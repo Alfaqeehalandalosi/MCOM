@@ -16,14 +16,14 @@
     <header class="site-header">
         <div class="topbar">
             <div class="container">
-                <h1 class="logo"> <a href="index.html"><img src="images/logo.png" alt="Logo"></a> </h1>
+                <h1 class="logo"> <a href="index.php"><img src="images/logo.png" alt="Logo"></a> </h1>
                 <nav class="navigation">
                   <ul class="sf-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="events.html">Events</a></li>
-                    <li><a href="sermons.html">Sermons</a></li>
-                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="about.php">About Us</a></li>
+                    <li><a href="events.php">Events</a></li>
+                    <li><a href="sermons.php">Sermons</a></li>
+                    <li><a href="shop.php">Shop</a></li>
                     <li><a href="#">Blog</a></li>
                   </ul>
                 </nav>

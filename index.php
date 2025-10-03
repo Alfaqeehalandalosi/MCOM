@@ -632,14 +632,14 @@
             <a href="#" class="header-logo"><img src="images/logo-white.png" alt="Logo"></a>
             <nav class="navigation">
               <ul class="sf-menu">
-                <li><a href="about.html">About</a></li>
-                <li><a href="connect.html">Connect</a></li>
-                <li><a href="next-steps.html">Next Steps</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="sermons.html">Sermons</a></li>
-                <li><a href="impact.html">Impact</a></li>
-                <li><a href="give.html">Give</a></li>
-                <li class="megamenu"><a href="shortcodes.html">Mega Menu</a>
+                <li><a href="about.php">About</a></li>
+                <li><a href="connect.php">Connect</a></li>
+                <li><a href="next-steps.php">Next Steps</a></li>
+                <li><a href="events.php">Events</a></li>
+                <li><a href="sermons.php">Sermons</a></li>
+                <li><a href="impact.php">Impact</a></li>
+                <li><a href="give.php">Give</a></li>
+                <li class="megamenu"><a href="shortcodes.php">Mega Menu</a>
                   <ul class="dropdown">
                     <li>
                       <div class="megamenu-container container">
@@ -649,27 +649,27 @@
                           </div>
                           <div class="col-md-3"> <span class="megamenu-sub-title"><i class="fa fa-pagelines"></i> Our Ministries</span>
                             <ul class="sub-menu">
-                              <li><a href="ministry.html">Women's Ministry</a></li>
-                              <li><a href="ministry.html">Men's Ministry</a></li>
-                              <li><a href="ministry.html">Children's Ministry</a></li>
-                              <li><a href="ministry.html">Youth Ministry</a></li>
-                              <li><a href="ministry.html">Prayer Requests</a></li>
+                              <li><a href="ministry.php">Women's Ministry</a></li>
+                              <li><a href="ministry.php">Men's Ministry</a></li>
+                              <li><a href="ministry.php">Children's Ministry</a></li>
+                              <li><a href="ministry.php">Youth Ministry</a></li>
+                              <li><a href="ministry.php">Prayer Requests</a></li>
                             </ul>
                           </div>
                           <div class="col-md-3"> <span class="megamenu-sub-title"><i class="fa fa-clock-o"></i> Upcoming Events</span>
                             <ul class="sub-menu">
-                              <li><a href="single-event.html">Monday Prayer</a> <span class="meta-data">Monday | 06:00 PM</span> </li>
-                              <li><a href="single-event.html">Staff members meet</a> <span class="meta-data">Tuesday | 08:00 AM</span> </li>
-                              <li><a href="single-event.html">Evening Prayer</a> <span class="meta-data">Friday | 07:00 PM</span> </li>
+                              <li><a href="single-event.php">Monday Prayer</a> <span class="meta-data">Monday | 06:00 PM</span> </li>
+                              <li><a href="single-event.php">Staff members meet</a> <span class="meta-data">Tuesday | 08:00 AM</span> </li>
+                              <li><a href="single-event.php">Evening Prayer</a> <span class="meta-data">Friday | 07:00 PM</span> </li>
                             </ul>
                           </div>
                           <div class="col-md-3"> <span class="megamenu-sub-title"><i class="fa fa-cog"></i> Features</span>
                             <ul class="sub-menu">
-                              <li><a href="shortcodes.html">Shortcodes</a></li>
-                              <li><a href="typography.html">Typography</a></li>
-                              <li><a href="shop.html">Shop <span class="label label-danger">New</span></a></li>
-                              <li><a href="shop-sidebar.html">Shop Sidebar <span class="label label-danger">New</span></a></li>
-                              <li><a href="shop-product.html">Single Product <span class="label label-danger">New</span></a></li>
+                              <li><a href="shortcodes.php">Shortcodes</a></li>
+                              <li><a href="typography.php">Typography</a></li>
+                              <li><a href="shop.php">Shop <span class="label label-danger">New</span></a></li>
+                              <li><a href="shop-sidebar.php">Shop Sidebar <span class="label label-danger">New</span></a></li>
+                              <li><a href="shop-product.php">Single Product <span class="label label-danger">New</span></a></li>
                             </ul>
                           </div>
                         </div>
@@ -680,7 +680,7 @@
               </ul>
             </nav>
             <div class="header-button">
-                <a href="#" class="btn">Log In</a>
+                <a href="php/login.php" class="btn">Log In</a>
             </div>
         </div>
     </header>
@@ -972,11 +972,11 @@
                 <div class="footer-col">
                     <h4>Blogroll</h4>
                     <ul>
-                        <li><a href="index.html">Church Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="events.html">All Events</a></li>
-                        <li><a href="sermons.html">Sermons Archive</a></li>
-                        <li><a href="blog-masonry.html">Our Blog</a></li>
+                        <li><a href="index.php">Church Home</a></li>
+                        <li><a href="about.php">About Us</a></li>
+                        <li><a href="events.php">All Events</a></li>
+                        <li><a href="sermons.php">Sermons Archive</a></li>
+                        <li><a href="blog-masonry.php">Our Blog</a></li>
                     </ul>
                 </div>
                  <div class="footer-col">

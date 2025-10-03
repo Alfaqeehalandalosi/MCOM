@@ -15,7 +15,7 @@
     <div class="container">
         <h1>Thank You!</h1>
         <p>Your generous donation has been received.</p>
-        <a href="index.php">Return to Homepage</a>
+        <a href="dashboard.php">Return to Homepage</a>
     </div>
 </body>
 </html>

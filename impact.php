@@ -500,11 +500,11 @@
                 <div class="footer-col">
                     <h4>Blogroll</h4>
                     <ul>
-                        <li><a href="index.html">Church Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="events.html">All Events</a></li>
-                        <li><a href="sermons.html">Sermons Archive</a></li>
-                        <li><a href="blog-masonry.html">Our Blog</a></li>
+                        <li><a href="index.php">Church Home</a></li>
+                        <li><a href="about.php">About Us</a></li>
+                        <li><a href="events.php">All Events</a></li>
+                        <li><a href="sermons.php">Sermons Archive</a></li>
+                        <li><a href="blog-masonry.php">Our Blog</a></li>
                     </ul>
                 </div>
                  <div class="footer-col">

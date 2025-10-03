@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 } else {
     // If someone tries to access this page directly, just send them to the homepage
-    header("Location: index.php");
+    header("Location: dashboard.php");
     exit();
 }
 ?>

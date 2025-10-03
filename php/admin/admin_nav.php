@@ -30,7 +30,7 @@
 </style>
 
 <nav class="admin-nav">
-    <a href="index.php">Dashboard</a>
+    <a href="dashboard.php">Dashboard</a>
     <a href="manage_users.php">Manage Users</a>
     <a href="overview_campaigns.php">Campaign Overview</a>
     <a href="campaigns.php">Manage Campaigns</a>

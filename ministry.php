@@ -1,9 +1,9 @@
-<!DOCTYPE HTML>
-<html class="no-js">
+<!DOCTYPE php>
+<php class="no-js">
 <head>
 <!-- Basic Page Needs
   ================================================== -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/php; charset=utf-8">
 <title>Manifestation</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -17,12 +17,13 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="plugins/mediaelement/mediaelementplayer.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="css/new-style.css" rel="stylesheet" type="text/css">
 <link href="plugins/prettyphoto/css/prettyPhoto.css" rel="stylesheet" type="text/css">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="css/ie8.css" media="screen" /><![endif]-->
 <!-- Color Style -->
-<link href="colors/color1.css" rel="stylesheet" type="text/css">
+<link href="colors/color1.css" rel="stylesheet" type="text/css"> 
+<link href="css/custom.css" rel="stylesheet" type="text/css"> 
+<link href="css/custom.css" rel="stylesheet" type="text/css">
 <!-- SCRIPTS
   ================================================== -->
 <script src="js/modernizr.js"></script><!-- Modernizr -->
@@ -57,13 +58,13 @@
                     	<nav class="top-menus pull-right">
                         	<ul>
                             	<li>
-                                	<a href="plan-visit.html">Plan your visit</a>
+                                	<a href="plan-visit.php">Plan your visit</a>
                             	</li>
                             	<li>
-                               		<a href="events-calendar.html">Calendar</a>
+                               		<a href="events-calendar.php">Calendar</a>
                             	</li>
                             	<li>
-                                	<a href="donate.html">Donate Now</a>
+                                	<a href="donate.php">Donate Now</a>
                             	</li>
                         	</ul>
                     	</nav>
@@ -74,16 +75,16 @@
       	<!-- End Top Row -->
         <div class="topbar">
         	<div class="container">
-                <h1 class="logo"> <a href="index.html"><img src="images/logo.png" alt="Logo"></a> </h1>
+                <h1 class="logo"> <a href="index.php"><img src="images/logo.png" alt="Logo"></a> </h1>
                 <a href="#" class="visible-sm visible-xs menu-toggle"><i class="fa fa-bars"></i></a> 
                 <div class="main-menu-wrapper">
                     <nav class="navigation">
                       <ul class="sf-menu">
-                        <li><a href="index.html">Home</a>
+                        <li><a href="index.php">Home</a>
                         </li>
-                        <li><a href="about.html">About Us</a>
+                        <li><a href="about.php">About Us</a>
                         </li>
-                        <li class="megamenu"><a href="shortcodes.html">Mega Menu</a>
+                        <li class="megamenu"><a href="shortcodes.php">Mega Menu</a>
                           <ul class="dropdown">
                             <li>
                               <div class="megamenu-container container">
@@ -93,27 +94,27 @@
                                   </div>
                                   <div class="col-md-3"> <span class="megamenu-sub-title"><i class="fa fa-pagelines"></i> Our Ministries</span>
                                     <ul class="sub-menu">
-                                      <li><a href="ministry.html">Women's Ministry</a></li>
-                                      <li><a href="ministry.html">Men's Ministry</a></li>
-                                      <li><a href="ministry.html">Children's Ministry</a></li>
-                                      <li><a href="ministry.html">Youth Ministry</a></li>
-                                      <li><a href="ministry.html">Prayer Requests</a></li>
+                                      <li><a href="ministry.php">Women's Ministry</a></li>
+                                      <li><a href="ministry.php">Men's Ministry</a></li>
+                                      <li><a href="ministry.php">Children's Ministry</a></li>
+                                      <li><a href="ministry.php">Youth Ministry</a></li>
+                                      <li><a href="ministry.php">Prayer Requests</a></li>
                                     </ul>
                                   </div>
                                   <div class="col-md-3"> <span class="megamenu-sub-title"><i class="fa fa-clock-o"></i> Upcoming Events</span>
                                     <ul class="sub-menu">
-                                      <li><a href="single-event.html">Monday Prayer</a> <span class="meta-data">Monday | 06:00 PM</span> </li>
-                                      <li><a href="single-event.html">Staff members meet</a> <span class="meta-data">Tuesday | 08:00 AM</span> </li>
-                                      <li><a href="single-event.html">Evening Prayer</a> <span class="meta-data">Friday | 07:00 PM</span> </li>
+                                      <li><a href="single-event.php">Monday Prayer</a> <span class="meta-data">Monday | 06:00 PM</span> </li>
+                                      <li><a href="single-event.php">Staff members meet</a> <span class="meta-data">Tuesday | 08:00 AM</span> </li>
+                                      <li><a href="single-event.php">Evening Prayer</a> <span class="meta-data">Friday | 07:00 PM</span> </li>
                                     </ul>
                                   </div>
                                   <div class="col-md-3"> <span class="megamenu-sub-title"><i class="fa fa-cog"></i> Features</span>
                                     <ul class="sub-menu">
-                                      <li><a href="shortcodes.html">Shortcodes</a></li>
-                                      <li><a href="typography.html">Typography</a></li>
-                    			<li><a href="shop.html">Shop <span class="label label-danger">New</span></a></li>
-                    			<li><a href="shop-sidebar.html">Shop Sidebar <span class="label label-danger">New</span></a></li>
-                    			<li><a href="shop-product.html">Single Product <span class="label label-danger">New</span></a></li>
+                                      <li><a href="shortcodes.php">Shortcodes</a></li>
+                                      <li><a href="typography.php">Typography</a></li>
+                    			<li><a href="shop.php">Shop <span class="label label-danger">New</span></a></li>
+                    			<li><a href="shop-sidebar.php">Shop Sidebar <span class="label label-danger">New</span></a></li>
+                    			<li><a href="shop-product.php">Single Product <span class="label label-danger">New</span></a></li>
                                     </ul>
                                   </div>
                                 </div>
@@ -121,14 +122,14 @@
                             </li>
                           </ul>
                         </li>
-                        <li><a href="events.html">Events</a>
+                        <li><a href="events.php">Events</a>
                           <ul class="dropdown">
-                            <li><a href="events-timeline.html">Events Timeline</a></li>
-                            <li><a href="google-calendar.html">Google Calender</a></li>
-                            <li><a href="events-calendar.html">Events Calender</a></li>
+                            <li><a href="events-timeline.php">Events Timeline</a></li>
+                            <li><a href="google-calendar.php">Google Calender</a></li>
+                            <li><a href="events-calendar.php">Events Calender</a></li>
                           </ul>
                         </li>
-                        <li><a href="sermons.html">Sermons</a>
+                        <li><a href="sermons.php">Sermons</a>
                         </li>
                         <li><a href="gallery-2cols-pagination.html">Gallery</a>
                           <ul class="dropdown">
@@ -149,16 +150,16 @@
                             <li><a href="gallery-masonry.html">Masonry Grid</a></li>
                           </ul>
                         </li>
-                        <li><a href="blog-masonry.html">Blog</a>
+                        <li><a href="blog-masonry.php">Blog</a>
                           <ul class="dropdown">
-                            <li><a href="blog-masonry.html">Masonry Blog</a></li>
-                            <li><a href="blog-full-width.html">Full Width Blog</a></li>
-                            <li><a href="blog-timeline.html">Timeline Blog</a></li>
-                            <li><a href="blog-medium-thumbnails.html">Medium Thumbnails</a></li>
-                            <li><a href="blog-post.html">Single Blog Post</a></li>
+                            <li><a href="blog-masonry.php">Masonry Blog</a></li>
+                            <li><a href="blog-full-width.php">Full Width Blog</a></li>
+                            <li><a href="blog-timeline.php">Timeline Blog</a></li>
+                            <li><a href="blog-medium-thumbnails.php">Medium Thumbnails</a></li>
+                            <li><a href="blog-post.php">Single Blog Post</a></li>
                           </ul>
                         </li>
-                        <li><a href="causes.html">Causes</a>
+                        <li><a href="causes.php">Causes</a>
                         </li>
                       </ul>
                     </nav>
@@ -167,114 +168,94 @@
         </div>
   	</header>
   <!-- End Site Header --> 
-   
+  <!-- Start Nav Backed Header -->
+  <div class="nav-backed-header parallax">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb" style="padding-top: 120px;">
+            <li><a href="index.php">Home</a></li>
+            <li><a href="#">Ministries</a></li>
+            <li class="active">Woment Ministry</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Nav Backed Header --> 
+  <!-- Start Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Ministry Page Sample</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Page Header --> 
   <!-- Start Content -->
   <div class="main" role="main">
     <div id="content" class="content full">
       <div class="container">
         <div class="row">
-        	<div class="col-md-12">
-            	<div class="row">
-                    <div class="sermons-header">
-                        <h1>Previous Messages</h1>
-                    </div>
-                    <div class="sermons-filter-bar">
-                        <ul class="filter-tabs">
-                            <li class="active"><a href="#">Recent</a></li>
-                            <li><a href="#">Topic</a></li>
-                            <li><a href="#">Speaker</a></li>
-                            <li><a href="#">Scripture</a></li>
-                        </ul>
-                        <div class="filter-search">
-                            <i class="fa fa-search"></i>
-                            <input type="text" placeholder="Search media...">
-                        </div>
-                    </div>
-                    <div class="row sermon-grid">
-                      <div class="col-md-4 col-sm-6 sermon-card-wrapper">
-                          <div class="sermon-card">
-                              <div class="sermon-image">
-                                  <a href="#"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER.jpg" alt=""></a>
-                              </div>
-                              <div class="sermon-title">
-                                  <h4>Product 1</h4>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-md-4 col-sm-6 sermon-card-wrapper">
-                          <div class="sermon-card">
-                              <div class="sermon-image">
-                                  <a href="#"><img src="https://images.photowall.com/products/54823/church-window.jpg?h=699&q=85" alt=""></a>
-                              </div>
-                              <div class="sermon-title">
-                                  <h4>Product 2</h4>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-md-4 col-sm-6 sermon-card-wrapper">
-                          <div class="sermon-card">
-                              <div class="sermon-image">
-                                  <a href="#"><img src="https://images.photowall.com/products/54823/church-window.jpg?h=699&q=85" alt=""></a>
-                              </div>
-                              <div class="sermon-title">
-                                  <h4>Product 3</h4>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-md-4 col-sm-6 sermon-card-wrapper">
-                          <div class="sermon-card">
-                              <div class="sermon-image">
-                                  <a href="#"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER.jpg" alt=""></a>
-                              </div>
-                              <div class="sermon-title">
-                                  <h4>Product 4</h4>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-md-4 col-sm-6 sermon-card-wrapper">
-                          <div class="sermon-card">
-                              <div class="sermon-image">
-                                  <a href="#"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER.jpg" alt=""></a>
-                              </div>
-                              <div class="sermon-title">
-                                  <h4>Product 5</h4>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-md-4 col-sm-6 sermon-card-wrapper">
-                          <div class="sermon-card">
-                              <div class="sermon-image">
-                                  <a href="#"><img src="https://images.photowall.com/products/54823/church-window.jpg?h=699&q=85" alt=""></a>
-                              </div>
-                              <div class="sermon-title">
-                                  <h4>Product 6</h4>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-md-4 col-sm-6 sermon-card-wrapper">
-                          <div class="sermon-card">
-                              <div class="sermon-image">
-                                  <a href="#"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER.jpg" alt=""></a>
-                              </div>
-                              <div class="sermon-title">
-                                  <h4>Product 7</h4>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-md-4 col-sm-6 sermon-card-wrapper">
-                          <div class="sermon-card">
-                              <div class="sermon-image">
-                                  <a href="#"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER.jpg" alt=""></a>
-                              </div>
-                              <div class="sermon-title">
-                                  <h4>Product 8</h4>
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-               	</div>
-           	</div>
-            
+          <div class="col-md-8">
+            <header class="single-post-header clearfix">
+              <h2 class="post-title">Our Church Women's Ministry</h2>
+            </header>
+            <div class="post-content">
+            	<img src="http://placehold.it/1280x635&amp;text=IMAGE+PLACEHOLDER" alt="Women Ministry" class="img-thumbnail">
+               <div class="spacer-30"></div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Pellentesque ipsum erat, facilisis ut venenatis eu, sodales vel dolor.</p>
+              <hr>
+              <h3>Get Involved</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci. Pellentesque ipsum erat, facilisis ut venenatis eu, sodales vel dolor.</p>
+              <a href="contact.php" class="btn btn-primary">Find a Lifegroup</a>
+              <hr>
+              	<h3>Ministry Team</h3>
+                <ul class="checks">
+                	<li>Mildred George</li>
+                  <li>Ashleigh Cox</li>
+                  <li>Giorgiana Mărginean</li>
+                  <li>Christine Mendez</li>
+                </ul>
+            </div>
+          </div>
+          <!-- Start Sidebar -->
+          <div class="col-md-4 sidebar">
+            <!-- Photo Gallery Widget -->
+            <div class="widget-gallery widget">
+              <div class="sidebar-widget-title">
+                <h3>Latest Gallery Items</h3>
+              </div>
+              <ul>
+                <li> <a href="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" class="media-box post-image" data-rel="prettyPhoto[galwid]"> <img src="http://placehold.it/80x80&amp;text=IMAGE" alt="" class="img-thumbnail"> </a></li>
+                <li> <a href="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" class="media-box post-image" data-rel="prettyPhoto[galwid]"> <img src="http://placehold.it/80x80&amp;text=IMAGE" alt="" class="img-thumbnail"> </a></li>
+                <li> <a href="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" class="media-box post-image" data-rel="prettyPhoto[galwid]"> <img src="http://placehold.it/80x80&amp;text=IMAGE" alt="" class="img-thumbnail"> </a></li>
+                <li> <a href="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" class="media-box post-image" data-rel="prettyPhoto[galwid]"> <img src="http://placehold.it/80x80&amp;text=IMAGE" alt="" class="img-thumbnail"> </a></li>
+                <li> <a href="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" class="media-box post-image" data-rel="prettyPhoto[galwid]"> <img src="http://placehold.it/80x80&amp;text=IMAGE" alt="" class="img-thumbnail"> </a></li>
+                <li> <a href="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" class="media-box post-image" data-rel="prettyPhoto[galwid]"> <img src="http://placehold.it/80x80&amp;text=IMAGE" alt="" class="img-thumbnail"> </a></li>
+              </ul>
+            </div>
+            <div class="widget-upcoming-events widget">
+              <div class="sidebar-widget-title">
+                <h3>Ministry Events</h3>
+              </div>
+              <ul>
+                <li class="item event-item clearfix">
+                  <div class="event-date"> <span class="date">28</span> <span class="month">Aug</span> </div>
+                  <div class="event-detail">
+                    <h4><a href="#">Staff members meet</a></h4>
+                    <span class="event-dayntime meta-data">Monday | 01:00 PM</span> </div>
+                </li>
+                <li class="item event-item clearfix">
+                  <div class="event-date"> <span class="date">06</span> <span class="month">Aug</span> </div>
+                  <div class="event-detail">
+                    <h4><a href="#">Monday Prayer</a></h4>
+                    <span class="event-dayntime meta-data">Monday | 07:00 AM</span> </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -294,11 +275,11 @@
         <div class="col-md-4 col-sm-4 widget footer-widget">
           <h4 class="footer-widget-title">Blogroll</h4>
           <ul>
-            <li><a href="index.html">Church Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="events.html">All Events</a></li>
-            <li><a href="sermons.html">Sermons Archive</a></li>
-            <li><a href="blog-masonry.html">Our Blog</a></li>
+            <li><a href="index.php">Church Home</a></li>
+            <li><a href="about.php">About Us</a></li>
+            <li><a href="events.php">All Events</a></li>
+            <li><a href="sermons.php">Sermons Archive</a></li>
+            <li><a href="blog-masonry.php">Our Blog</a></li>
           </ul>
         </div>
         <div class="col-md-4 col-sm-4 widget footer-widget">
@@ -322,7 +303,7 @@
     </div>
   </footer>
   <!-- End Footer --> 
-  <a id="back-to-top"><i class="fa fa-angle-double-up"></i></a> 
+  <a id="back-to-top"><i class="fa fa-angle-double-up"></i></a>
 </div>
 <script src="js/jquery-2.0.0.min.js"></script> <!-- Jquery Library Call --> 
 <script src="plugins/prettyphoto/js/prettyphoto.js"></script> <!-- PrettyPhoto Plugin --> 
@@ -332,6 +313,6 @@
 <script src="plugins/mediaelement/mediaelement-and-player.min.js"></script> <!-- MediaElements --> 
 <script src="js/init.js"></script> <!-- All Scripts --> 
 <script src="plugins/flexslider/js/jquery.flexslider.js"></script> <!-- FlexSlider --> 
-<script src="plugins/countdown/js/jquery.countdown.min.js"></script> <!-- Jquery Timer -->
+<script src="plugins/countdown/js/jquery.countdown.min.js"></script> <!-- Jquery Timer --> 
 </body>
-</html>
+</php>

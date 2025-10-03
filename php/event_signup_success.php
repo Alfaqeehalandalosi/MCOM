@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1>Thank You!</h1>
         <p>You have successfully registered for the event. We look forward to seeing you there!</p>
         <a href="events.php">See More Events</a>
-        <a href="index.php">Return to Homepage</a>
+        <a href="dashboard.php">Return to Homepage</a>
     </div>
 </body>
 </html>

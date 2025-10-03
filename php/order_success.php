@@ -15,7 +15,7 @@
     <div class="container">
         <h1>Thank You!</h1>
         <p>Your order has been placed successfully. We will contact you shortly regarding payment and collection.</p>
-        <a href="index.php">Return to Homepage</a>
+        <a href="dashboard.php">Return to Homepage</a>
     </div>
 </body>
 </html>

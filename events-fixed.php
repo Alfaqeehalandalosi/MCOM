@@ -321,16 +321,16 @@
             <a href="#" class="header-logo"><img src="https://via.placeholder.com/200x50/FFFFFF/000000?text=Your+Logo" alt="Logo"></a>
             <nav class="navigation">
               <ul class="sf-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li> 
-                <li><a href="events-fixed.html">Events</a>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="about.php">About Us</a></li> 
+                <li><a href="events-fixed.php">Events</a>
                   <ul class="dropdown">
-                    <li><a href="events-timeline.html">Events Timeline</a></li>
-                    <li><a href="google-calendar.html">Google Calender</a></li>
-                    <li><a href="events-calendar.html">Events Calender</a></li>
+                    <li><a href="events-timeline.php">Events Timeline</a></li>
+                    <li><a href="google-calendar.php">Google Calender</a></li>
+                    <li><a href="events-calendar.php">Events Calender</a></li>
                   </ul>
                 </li>
-                <li><a href="sermons.html">Sermons</a></li>
+                <li><a href="sermons.php">Sermons</a></li>
                 <li><a href="gallery-2cols-pagination.html">Gallery</a>
                   <ul class="dropdown">
                     <li><a href="gallery-2cols-pagination.html">With Pagination</a>
@@ -339,21 +339,21 @@
                             <li><a href="gallery-3cols-pagination.html">3 Columns</a></li>
                         </ul>
                     </li>
-                    <li><a href="gallery-2cols-filter.html">With Filter</a>
+                    <li><a href="gallery-2cols-filter.php">With Filter</a>
                         <ul class="dropdown">
-                            <li><a href="gallery-2cols-filter.html">2 Columns</a></li>
-                            <li><a href="gallery-3cols-filter.html">3 Columns</a></li>
+                            <li><a href="gallery-2cols-filter.php">2 Columns</a></li>
+                            <li><a href="gallery-3cols-filter.php">3 Columns</a></li>
                         </ul>
                     </li>
                   </ul>
                 </li>
-                <li><a href="blog-masonry.html">Blog</a>
+                <li><a href="blog-masonry.php">Blog</a>
                   <ul class="dropdown">
-                    <li><a href="blog-masonry.html">Masonry Blog</a></li>
-                    <li><a href="blog-full-width.html">Full Width Blog</a></li>
+                    <li><a href="blog-masonry.php">Masonry Blog</a></li>
+                    <li><a href="blog-full-width.php">Full Width Blog</a></li>
                   </ul>
                 </li>
-                <li><a href="causes.html">Causes</a></li>
+                <li><a href="causes.php">Causes</a></li>
               </ul>
             </nav>
             <div class="header-button">
@@ -435,11 +435,11 @@
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Church Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="events.html">All Events</a></li>
-                        <li><a href="sermons.html">Sermons Archive</a></li>
-                        <li><a href="blog-masonry.html">Our Blog</a></li>
+                        <li><a href="index.php">Church Home</a></li>
+                        <li><a href="about.php">About Us</a></li>
+                        <li><a href="events.php">All Events</a></li>
+                        <li><a href="sermons.php">Sermons Archive</a></li>
+                        <li><a href="blog-masonry.php">Our Blog</a></li>
                     </ul>
                 </div>
                  <div class="footer-col">

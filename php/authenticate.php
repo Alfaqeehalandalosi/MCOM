@@ -26,7 +26,7 @@ if ($stmt->num_rows > 0) {
         $_SESSION['admin_id'] = $admin_id;
         
         // Redirect to the admin dashboard
-        header('Location: admin/index.php');
+        header('Location: admin/dashboard.php');
         exit;
     } else {
         // Incorrect password
