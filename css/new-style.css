@@ -1,0 +1,181 @@
+/* ==========================================================================
+   GLOBAL STYLES
+   ========================================================================== */
+:root {
+    --primary-black: #1a1a1a;
+    --primary-white: #ffffff;
+    --text-gray: #555555;
+    --border-color: #e0e0e0;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-black);
+    background-color: var(--primary-white);
+    margin: 0;
+}
+img { max-width: 100%; height: auto; }
+.btn-new { display: inline-block; text-decoration: none; font-weight: 700; text-transform: uppercase; transition: all 0.3s ease; }
+.btn-new.outline-light { padding: 15px 30px; font-size: 1rem; border: 2px solid var(--primary-white); color: var(--primary-white); border-radius: 30px; }
+.btn-new.outline-light:hover { background-color: var(--primary-white); color: var(--primary-black); }
+.btn-new.primary { background-color: var(--primary-black); color: var(--primary-white); border-radius: 30px; padding: 12px 30px; font-weight: 700; }
+.btn-new.primary:hover { background-color: #333; }
+.small-title { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+.site-header .toprow { background-color: var(--primary-black); color: var(--primary-white); height: 40px; line-height: 40px; font-size: 12px; }
+.site-header .toprow a { color: #ccc; text-decoration: none; }
+.site-header .toprow a:hover { color: var(--primary-white); }
+.site-header .top-menus ul { list-style: none; padding: 0; margin: 0; display: flex; align-items: center; gap: 15px; }
+.site-header .top-menus.pull-right { float: right; }
+.site-header .topbar { background-color: var(--primary-white); padding: 20px 0; border-bottom: 1px solid #eee; }
+.site-header .topbar .container { display: flex; justify-content: space-between; align-items: center; }
+.site-header .logo { margin: 0; }
+.site-header .logo img { max-height: 50px; }
+.navigation ul.sf-menu { display: flex; list-style: none; margin: 0; padding: 0; gap: 30px; }
+.navigation .sf-menu a { text-decoration: none; color: var(--text-gray); font-weight: 700; font-size: 14px; text-transform: uppercase; }
+.navigation .sf-menu a:hover { color: var(--primary-black); }
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+section#hero { position: relative; height: 95vh; display: flex; justify-content: center; align-items: flex-start; text-align: center; color: var(--primary-white); }
+#hero .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+#hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1; }
+#hero .hero-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; margin-top: 20vh; }
+#hero .hero-content h1 { font-size: 5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; color: var(--primary-white); }
+#hero .notice-bar { display: flex; align-items: center; gap: 15px; padding: 8px 15px; background-color: rgba(26, 26, 26, 0.7); border-radius: 8px; max-width: 600px; margin-top: 40px; color: white; }
+#hero .notice-bar h3 { color: var(--primary-white); margin: 0; font-size: 14px; }
+#all-sermons-btn { margin-top: 20px; padding: 6px 14px; font-size: 0.7rem; line-height: 1.5; }
+
+/* ==========================================================================
+   CONTENT SECTIONS
+   ========================================================================== */
+.content-section { padding: 100px 0; border-bottom: 1px solid #eee; }
+.service-times-section .row, .welcome-section .row, .watch-online-section .row, .content-section .container > .row { display: flex; align-items: center; }
+.service-times-section h2 { font-size: 5rem; font-weight: 900; line-height: 1.05; text-transform: lowercase; color: var(--primary-black); letter-spacing: -2px; }
+.service-times-section h4 { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; color: var(--primary-black); letter-spacing: 1px; }
+.service-times-section .service-details { font-size: 1.2rem; line-height: 1.5; color: var(--text-gray); margin-bottom: 25px; }
+.service-times-section .service-details strong { color: var(--primary-black); font-weight: 900; font-size: 1.4rem; letter-spacing: -1px; }
+.welcome-section.bg-dark { background-color: var(--primary-black); color: var(--primary-white); }
+.welcome-section h2 { color: var(--primary-white); font-size: 3rem; font-weight: 700; margin: 10px 0 20px 0; }
+.welcome-section p { color: #cccccc; }
+.connect-grid { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: repeat(2, 250px); gap: 20px; }
+.connect-item { position: relative; background-size: cover; background-position: center; border-radius: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; cursor: pointer; }
+.connect-item.large { grid-row: span 2; }
+.connect-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.2); z-index: 1; transition: background-color 0.3s ease; }
+.connect-item:hover::before { background-color: rgba(0, 0, 0, 0.6); }
+.connect-item h2 { position: relative; z-index: 2; color: var(--primary-white); font-size: 2.5rem; font-weight: 700; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); transition: color 0.3s ease; }
+.connect-item:hover h2 { color: #367D77; text-shadow: none; }
+.watch-online-section { background-color: var(--primary-black); color: var(--primary-white); }
+.watch-online-section h2 { font-family: "Georgia", serif; font-size: 3.5rem; color: var(--primary-white); }
+.watch-online-section .btn-new.outline-light { margin-right: 10px; }
+.steps-list { margin-top: 30px; }
+.step-item { display: flex; align-items: flex-start; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border-color); }
+.step-item:first-child { border-top: 1px solid var(--border-color); }
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+#map-and-footer .google-map-container iframe { display: block; }
+.site-footer-new { background-color: var(--primary-black); color: #cccccc; padding: 60px 0 30px 0; }
+.footer-col h4 { color: var(--primary-white); font-size: 1rem; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; }
+.footer-col p, .footer-col ul a { color: #cccccc; }
+.footer-col ul { list-style: none; padding: 0; }
+.footer-bottom { border-top: 1px solid #444; margin-top: 40px; padding-top: 30px; }
+.footer-bottom .social-links { text-align: right; }
+.footer-bottom .social-links a { color: #cccccc; font-size: 1.2rem; margin-left: 20px; }
+
+/* ==========================================================================
+   SHOP PAGE STYLES
+   ========================================================================== */
+.main-content-area {
+    padding: 40px 0;
+}
+.shop-header {
+    text-align: center;
+    padding: 20px 0 40px 0;
+}
+.shop-header h1 {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--primary-black);
+}
+.shop-filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.filter-tabs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 30px;
+}
+.filter-tabs a {
+    text-decoration: none;
+    color: var(--text-gray);
+    font-weight: 700;
+    padding-bottom: 20px;
+    border-bottom: 2px solid transparent;
+}
+.filter-tabs li.active a,
+.filter-tabs a:hover {
+    color: var(--primary-black);
+    border-bottom-color: var(--primary-black);
+}
+.filter-search {
+    position: relative;
+}
+.filter-search .fa-search {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+.filter-search input {
+    border: 1px solid #e0e0e0;
+    border-radius: 30px;
+    padding: 10px 20px 10px 40px;
+    width: 250px;
+}
+.product-card-wrapper {
+    margin-bottom: 30px;
+}
+.product-card .product-image {
+    overflow: hidden;
+    border-radius: 8px;
+}
+.product-card .product-image img {
+    width: 100%;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+.product-card .product-image:hover img {
+    transform: scale(1.05);
+}
+.product-card .product-title {
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.product-card .product-title h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-black);
+    margin: 0;
+}
+.product-card .product-price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-gray);
+    margin: 0;
+}

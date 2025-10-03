@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids - Cedarcrest Church | Acworth GA</title>
+    <link rel="icon" href="https://cedarcrestchurch.com/wp-content/uploads/2022/05/cropped-cedarcrest-favicon-32x32.png" sizes="32x32">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Open+Sans:wght@400;700&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/header.css">
+
+    <style>
+        :root {
+            --primary-dark: #000000;
+            --accent-teal: #47ab9d;
+            --accent-teal-hover: #348b7f;
+            --text-light: #ffffff;
+            --text-dark: #272727;
+            --text-muted: #999999;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-logo img {
+            max-height: 50px;
+            transition: max-height 0.4s ease;
+        }
+        .site-header.scrolled .header-logo img {
+            max-height: 40px;
+        }
+        .main-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 35px;
+        }
+        .main-nav a {
+            color: var(--text-light);
+            font-family: 'Open Sans', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.2em;
+            font-weight: 400;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+        }
+        .main-nav a:hover {
+            color: var(--accent-teal);
+            border-bottom-color: var(--accent-teal);
+        }
+        .header-button .btn {
+            color: var(--text-light);
+            border: 2px solid var(--text-light);
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            text-transform: uppercase;
+        }
+        .header-button .btn:hover {
+            background-color: var(--text-light);
+            color: var(--primary-dark);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            background-color: var(--primary-dark);
+        }
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
+        }
+        .hero-content h1 {
+            font-family: 'poynter-new', 'Georgia', serif;
+            font-size: 5em;
+            font-weight: 700;
+            line-height: 1.1;
+            margin: 0 0 30px 0;
+        }
+        .hero-content .btn {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-light);
+            border: 2px solid var(--text-light);
+            background: transparent;
+            padding: 15px 35px;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            transition: all 0.3s ease;
+        }
+        .hero-content .btn:hover {
+            background-color: var(--text-light);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Ministries Grid Section */
+        .ministries-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 250px 250px;
+            gap: 20px;
+        }
+        .ministry-card {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 2em;
+            font-weight: 900;
+            overflow: hidden;
+        }
+        .ministry-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.35);
+            z-index: 1;
+        }
+        .ministry-card h2 {
+            position: relative;
+            z-index: 2;
+        }
+        .ministry-card#groups {
+            grid-row: 1 / 3;
+        }
+        
+        /* Coming Up Section */
+        .coming-up-section {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+        }
+        .coming-up-section h2, .coming-up-section h3 {
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+        }
+        .coming-up-section h3 { font-size: 1.5em; }
+        .coming-up-section h2 { font-size: 2.5em; }
+        .coming-up-section p { color: var(--text-muted); }
+        .coming-up-section .btn {
+            display: inline-block;
+            margin-right: 15px;
+            border: 2px solid var(--text-light);
+            padding: 12px 28px;
+            border-radius: 5px;
+            color: var(--primary-dark);
+            background-color: var(--text-light);
+        }
+        .coming-up-section .btn:hover {
+            background-color: transparent;
+            color: var(--text-light);
+        }
+        .coming-up-section .btn.secondary {
+             background-color: transparent;
+             color: var(--text-light);
+        }
+         .coming-up-section .btn.secondary:hover {
+            background-color: var(--text-light);
+            color: var(--primary-dark);
+        }
+
+        /* --- NEXT STEPS SECTION (NEW) --- */
+        .next-steps-section {
+            background-color: var(--bg-light);
+            text-align: center;
+        }
+        .next-steps-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .next-steps-section .intro-text {
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .next-steps-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            text-align: left;
+        }
+        .step-card {
+            background: var(--text-light);
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            color: var(--text-dark);
+            display: block;
+        }
+        .step-card:hover {
+            border-color: var(--accent-teal);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .step-card .fa {
+            font-size: 2em;
+            color: var(--accent-teal);
+            margin-bottom: 15px;
+        }
+        .step-card h4 {
+            font-size: 1.2em;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+        .step-card p {
+            font-size: 0.9em;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        /* Parallax Events Section */
+        .parallax-section {
+            padding: 15vh 0;
+            background-image: url('images/join-us-text.png');
+            background-color: var(--primary-dark);
+            background-attachment: fixed;
+            background-position: 95% 85%;
+            background-repeat: no-repeat;
+            background-size: 40% auto;
+            color: var(--text-light);
+        }
+        .parallax-section h3 { font-size: 1.5em; }
+        .parallax-section h2 { font-size: 2.5em; margin-bottom: 30px;}
+        .parallax-section .btn {
+            background-color: var(--text-light);
+            color: var(--primary-dark);
+            padding: 12px 28px;
+            border-radius: 5px;
+        }
+        .parallax-section .btn:hover {
+            background-color: var(--text-muted);
+        }
+
+        /* --- MAP SECTION --- */
+        .map-section {
+            padding: 0;
+            line-height: 0; /* Removes potential whitespace under the iframe */
+        }
+        .map-section iframe {
+            width: 100%;
+            height: 450px;
+            border: 0;
+        }
+
+        /* --- FOOTER --- */
+        .site-footer {
+            color: var(--text-light);
+        }
+        .footer-main {
+            background-color: var(--primary-dark);
+            padding: 80px 0;
+            border-top: 1px solid #333;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        .footer-col h4 {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+        .footer-col p, .footer-col a {
+            color: var(--text-muted);
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        .footer-col a:hover { color: var(--text-light); }
+        .footer-col ul { list-style: none; padding: 0; margin: 0;}
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-bar {
+            background-color: var(--primary-dark);
+            padding: 20px 0;
+            box-shadow: 0 -3px 25px rgba(0,0,0,0.15);
+        }
+        .footer-bar .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .footer-bar img { max-height: 40px; margin: 0 30px;}
+        .footer-bar .line {
+            height: 1px;
+            flex-grow: 1;
+            background-color: #333;
+        }
+        .footer-bottom {
+            background-color: var(--primary-dark);
+            padding: 20px 0;
+            font-size: 0.8em;
+        }
+        .footer-bottom .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .footer-social a {
+            color: var(--text-muted);
+            margin-left: 15px;
+        }
+        .footer-social a:hover { color: var(--text-light); }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-nav, .header-button { display: none; } /* Simplified for example */
+            .hero-content h1 { font-size: 3em; }
+            .split-section { flex-direction: column; }
+            .split-section > div { width: 100%; }
+            .split-section img { margin-top: 40px; }
+            .welcome-section .split-section { flex-direction: column-reverse; }
+            .ministries-grid { grid-template-columns: 1fr; grid-template-rows: repeat(3, 200px);}
+            .ministry-card#groups { grid-row: auto; }
+            .parallax-section { background-size: 80% auto; }
+            .next-steps-grid { grid-template-columns: 1fr; }
+        }
+
+/* Styling for the new navigation structure */
+.site-header .navigation .sf-menu > li > a {
+    color: var(--text-light);
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.2em;
+    font-weight: 400;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+.site-header .navigation .sf-menu > li > a:hover {
+    color: var(--accent-teal);
+    border-bottom-color: var(--accent-teal);
+}
+
+/* Base styling for all dropdowns */
+.navigation .dropdown {
+    display: none; /* Handled by JS, but good for base */
+    position: absolute;
+    background-color: #222;
+    padding: 15px;
+    border-top: 3px solid var(--accent-teal);
+    list-style: none;
+    width: 220px;
+}
+.navigation li:hover > .dropdown {
+    display: block; /* Simple CSS hover fallback */
+}
+.navigation .dropdown li {
+    padding: 5px 0;
+}
+.navigation .dropdown a {
+    color: #cccccc;
+    font-size: 0.9em;
+    text-transform: none;
+    letter-spacing: normal;
+}
+.navigation .dropdown a:hover {
+    color: var(--text-light);
+}
+
+/* Mega Menu Specifics */
+.navigation .megamenu > .dropdown {
+    width: 100%;
+    max-width: 800px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.megamenu-container {
+    display: flex;
+    gap: 20px;
+}
+.megamenu-container > div {
+    flex: 1;
+}
+.megamenu-sub-title {
+    display: block;
+    color: var(--accent-teal);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+.megamenu .sub-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.sf-menu {
+    display: flex;
+    gap: 35px;
+}
+
+    </style>
+    <style>
+        /* Direct @font-face rule from the original website for 100% accuracy */
+        @font-face {
+            font-family: "poynter-new";
+            font-display: auto;
+            src: url('https://cedarcrestchurch.com/wp-content/uploads/2025/02/PoynterText-Bold_new.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        /* General Body and Reset Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: #ffffff;
+            color: #999999;
+            line-height: 1.6;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            color: #272727;
+            margin: 0;
+            line-height: 1.2;
+            letter-spacing: -0.035em;
+        }
+
+        /* Original kids.html container style was more specific */
+        .container.kids-content {
+            max-width: 1200px;
+            width: 88%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Main Content Styles */
+        .x-section {
+            padding: 6% 0;
+            position: relative;
+        }
+
+        .hero-section {
+            padding-top: 120px; /* Adjust for fixed header */
+            min-height: 40vh;
+            background-image: url('https://cedarcrestchurch.com/wp-content/uploads/2023/07/20230626-R6_12170-scaled.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-section .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.37);
+        }
+        
+        .hero-section h2 {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            font-family: "poynter-new", serif;
+            font-size: 3.5em;
+            font-weight: 700;
+        }
+
+        .welcome-section-kids { /* Renamed to avoid conflict */
+            padding: 10vh 0;
+            background-color: #fff;
+        }
+        
+        .welcome-section-kids .row {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .welcome-section-kids .col {
+            flex: 1;
+        }
+
+        .image-grid {
+            position: relative;
+            height: 500px; 
+        }
+
+        .image-grid .img {
+            position: absolute;
+            border: 3px solid white;
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .image-grid .img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+            display: block;
+        }
+
+        .image-grid .img-1 { width: 50%; height: 60%; top: 0; left: 0; z-index: 1; }
+        .image-grid .img-2 { width: 50%; height: 60%; top: 10%; left: 45%; z-index: 2; }
+        .image-grid .img-3 { width: 60%; height: 40%; top: 60%; left: 10%; z-index: 3; }
+
+        .welcome-text .primary-heading {
+            font-size: 1em;
+            color: #b2aeaa;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+        }
+        
+        .welcome-text .subheadline {
+            font-family: "poynter-new", serif;
+            font-size: 3em;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-top: 0.35em;
+        }
+
+        mark-kids {
+            background-color: #dd6625;
+            color: white;
+            padding: 0.1em 0.3em;
+        }
+
+        .welcome-text .description {
+            font-family: 'Open Sans', sans-serif;
+            margin-top: 1em;
+            font-size: 1em;
+        }
+
+        .btn.btn-dark { display: inline-block; margin-top: 1em; padding: 0.855em 1.05em; border-radius: 5px; text-transform: uppercase; font-family: 'Open Sans', sans-serif; font-weight: 400; letter-spacing: 0.25em; transition: background-color 0.3s; background-color: #000; color: #fff; border: none;}
+        .btn.btn-dark:hover { background-color: #b2aeaa; color: #fff; }
+
+        .programs-section {
+            background-color: #000;
+            background-image: url('https://cedarcrestchurch.com/wp-content/uploads/2022/05/cc-kids_bg.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .programs-section .row { display: flex; gap: 40px; padding: 40px 0; }
+        .programs-section .col { flex: 1; display: flex; flex-direction: column; align-items: flex-start; }
+        .program-card img { width: 100%; height: auto; border-radius: 5px; }
+        
+        .program-card .primary-heading {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1em;
+            color: #fff;
+            margin-top: 1em;
+            font-weight: 400;
+        }
+
+        .program-card .subheadline {
+            font-family: "poynter-new", serif;
+            font-size: 3em;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .divider { width: 100px; height: 2px; background-color: #fff; margin: 10px 0; }
+        
+        .program-card .description {
+            color: #fff;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .btn.btn-orange {
+            display: inline-block;
+            margin-top: 1em;
+            padding: 0.855em 1.05em;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            transition: background-color 0.3s;
+            background-color: #dd6625;
+            color: #f8f5f3;
+            box-shadow: 0em 0.15em 0.65em 0em rgba(0,0,0,0.25);
+            border: none;
+        }
+        .btn.btn-orange:hover { color: rgba(0,0,0,0.5); }
+
+        .expect-section {
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .expect-section .primary-heading {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1em;
+            color: #b2aeaa;
+            font-weight: 400;
+        }
+
+        .expect-section .subheadline {
+            font-family: "poynter-new", serif;
+            font-size: 3em;
+            font-weight: 700;
+        }
+        
+        .accordion-container { max-width: 900px; margin: 40px auto 0; text-align: left; }
+        .accordion-item { margin-bottom: 25px; }
+        
+        .accordion-header {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 15px 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.15em;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            color: #000;
+        }
+        
+        .accordion-header:hover, .accordion-header.active { color: #dd6625; }
+        .accordion-indicator { transition: transform 0.3s ease; margin-right: 0.5em; }
+        .accordion-header.active .accordion-indicator { transform: rotate(90deg); }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-top: 1px solid rgba(108,108,108,0.1);
+            padding: 0 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            color: #000;
+        }
+        
+        .accordion-content .inner-content {
+            padding: 20px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 978px) {
+            .welcome-section-kids .row, .programs-section .row { flex-direction: column; }
+            .image-grid { height: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header injected at runtime by js/header-loader.js -->
+            <main role="main">
+                <article>
+                    <div class="entry-content">
+                        <section class="x-section hero-section">
+                            <div class="overlay"></div>
+                            <div class="container kids-content">
+                                <h2>kids</h2>
+                            </div>
+                        </section>
+
+                        <section class="x-section welcome-section-kids">
+                            <div class="container kids-content">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="image-grid">
+                                            <div class="img img-1"><img src="https://cedarcrestchurch.com/wp-content/uploads/2023/07/20230626-R6_12412-scaled.jpg" alt="Kids playing"></div>
+                                            <div class="img img-2"><img src="https://cedarcrestchurch.com/wp-content/uploads/2022/07/kids-about-01_1200x800.jpg" alt="Kids worship"></div>
+                                            <div class="img img-3"><img src="https://cedarcrestchurch.com/wp-content/uploads/2023/07/20230626-R6_11927-scaled.jpg" alt="Kids activity"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col welcome-text">
+                                        <h2 class="primary-heading"></h2>
+                                        <span class="subheadline"><mark-kids>leading kids</mark-kids> to love God and others.</span>
+                                        <div class="description">
+                                            Manifestation Outreach exists to provide a dynamic and FUN environment where kids can encounter Jesus, be discipled, and learn to live on mission.
+                                        </div>
+                                        <a href="mailto:cynthia@cedarcrestchurch.com" class="btn btn-dark">contact us</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section class="x-section programs-section">
+                            <div class="container kids-content">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="program-card">
+                                            <img src="https://cedarcrestchurch.com/wp-content/uploads/2022/08/20210829-AS7A1401.jpg" alt="Preschool kids">
+                                            <h2 class="primary-heading">6-weeks—Preschool</h2>
+                                            <span class="subheadline">infants to preschool</span>
+                                            <hr class="divider">
+                                            <div class="description">From the babies to the 5 year-olds, our desire is that your preschoolers experience the presence of God. We want your preschoolers to learn three key things while they’re with us: God made them; God loves them; Jesus wants to be their friend forever! Those three things will be reiterated week after week through worship, engaging activities, and age-appropriate Bible teaching.</div>
+                                            <a href="#" class="btn btn-orange">Pre-Register Now</a>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="program-card">
+                                            <img src="https://cedarcrestchurch.com/wp-content/uploads/2022/07/kids-elementary_1200x800.jpg" alt="Elementary kids">
+                                            <h2 class="primary-heading">K—5th Grade</h2>
+                                            <span class="subheadline">elementary</span>
+                                            <hr class="divider">
+                                            <div class="description">Your elementary kiddos will learn that life with Jesus is fun! In large group, the kids participate in a group game, dynamic worship, and an engaging teaching. In small groups, the kids will apply what they’ve learned through intentional discussion and application activities. Your kids will also leave with a JAM Time Sheet (“Jesus and Me”) that will help them grow in their relationship with Jesus during the week.</div>
+                                            <a href="#" class="btn btn-orange">Pre-Register Now</a>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="program-card">
+                                            <img src="https://cedarcrestchurch.com/wp-content/uploads/2022/08/Untitled-design-21.png" alt="Special needs program logo">
+                                            <h2 class="primary-heading">Special Needs</h2>
+                                            <span class="subheadline">blossom</span>
+                                            <hr class="divider">
+                                            <div class="description">
+                                                <p>Families with members experiencing special needs can often feel as if they are alone and without support. We are dedicated to providing a loving, supportive environment where families and their kiddos with special needs can find sanctuary through which to grow and Blossom in their personal relationship with Jesus. Blossom programming is offered at all of our morning services.</p>
+                                                <p>If you plan to join us for the first time this Sunday, <strong>fill out the form below</strong> to let us know you're coming so we can prepare the safest environment for your kiddo!</p>
+                                            </div>
+                                            <a href="#" class="btn btn-orange">Blossom Pre-Registration</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="x-section expect-section">
+                            <div class="container kids-content">
+                                <h2 class="primary-heading">What to Expect</h2>
+                                <span class="subheadline">new here? want to know more?</span>
+                                <div class="accordion-container">
+                                    <div class="accordion-item">
+                                        <button class="accordion-header">
+                                            <span class="accordion-indicator">❯</span>
+                                            <span>How to Check-In?</span>
+                                        </button>
+                                        <div class="accordion-content">
+                                            <div class="inner-content">
+                                                <p>On your first visit, plan to arrive about 10-15 minutes before the start of the service, and let our team members know you’re visiting when you arrive. They’ll walk you directly to our Kids Desk where you’ll be registered and receive your child’s parent identification number.<br><br>In order to expedite the check-in process, you can pre-register your kiddo at the link below.<br><br><a href="#">>> Register Now</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <button class="accordion-header">
+                                            <span class="accordion-indicator">❯</span>
+                                            <span>Safety Protocols</span>
+                                        </button>
+                                        <div class="accordion-content">
+                                            <div class="inner-content">
+                                                <p>Every child’s name tag is matched to a parent-identification number, every team member is screened with an interview and federal background check, and every hallway door is locked. During check out, you will show this security tag to your child’s small group leader in order for your child to be released from the classroom.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <button class="accordion-header">
+                                            <span class="accordion-indicator">❯</span>
+                                            <span>Join the Team!</span>
+                                        </button>
+                                        <div class="accordion-content">
+                                            <div class="inner-content">
+                                                <p>Every Sunday, you'll see our team members arriving in their orange shirts, ready to enthusiastically lead our kids in worship, facilitate small group activities, host first-time guest families, run production in large group, and so much more! Come join the fun!<br><br><a href="#">>> Serve With Us</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </article>
+            </main>
+
+            <footer class="site-footer">
+                <div class="footer-main">
+                    <div class="container footer-grid">
+                        <div class="footer-col">
+                            <h4 class="footer-widget-title">About our Church</h4>
+                            <img src="images/logo-white.png" alt="Logo" style="max-width: 200px; margin-bottom: 20px;">
+                            <p>OFF AKINJAGUNLA, AGIODO-OJOJO ROAD, IMOLE OLORUN TAN, OKE-AYO STREET, ONDO TOWN, ONDO STATE, NIGERIA</p>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Blogroll</h4>
+                            <ul>
+                                <li><a href="index.html">Church Home</a></li>
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="events.html">All Events</a></li>
+                                <li><a href="sermons.html">Sermons Archive</a></li>
+                                <li><a href="blog-masonry.html">Our Blog</a></li>
+                            </ul>
+                        </div>
+                         <div class="footer-col">
+                            <h4>Our Church on Twitter</h4>
+                            <p>Follow us on Twitter for the latest updates and inspiration.</p>
+                            <a href="#">@YourTwitterHandle</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bar">
+                    <div class="container">
+                        <div class="line"></div>
+                        <img src="images/logo-white.png" alt="Footer Logo">
+                        <div class="line"></div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="footer-copyright">
+                            <p>&copy; <script>document.write(new Date().getFullYear());</script> Manifestation. All Rights Reserved</p>
+                        </div>
+                        <div class="footer-social">
+                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-instagram"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-rss"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+    <script>        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+
+                    // Optional: Close other accordions when one is opened
+                    accordionHeaders.forEach(h => {
+                        if (h !== this) {
+                           h.classList.remove('active');
+                           h.nextElementSibling.style.maxHeight = null;
+                        }
+                    });
+
+                    if (isActive) {
+                        this.classList.remove('active');
+                        content.style.maxHeight = null;
+                    } else {
+                        this.classList.add('active');
+                        // Ensure content is visible before getting scrollHeight
+                        content.style.display = 'block';
+                        content.style.maxHeight = content.querySelector('.inner-content').scrollHeight + 40 + "px"; // 40 for padding
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="js/header-loader.js"></script>
+</body>
+</html>

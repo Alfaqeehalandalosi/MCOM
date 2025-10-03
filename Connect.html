@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect - Manifestation Outreach</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'poynter-new';
+            src: url('https://cedarcrestchurch.com/wp-content/uploads/2025/02/PoynterText-Bold_new.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        :root {
+            --bg-light: #F8F7F3;
+            --accent-teal: #027368;
+            --accent-teal-hover: #025951;
+            --text-light: #FFFFFF;
+            --text-muted: #8C8C8C;
+            --primary-dark: #262626;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--text-light);
+            color: var(--primary-dark);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- START: New Header and Footer Styles from Example --- */
+
+        /* General Structure */
+        .x-masthead, .x-colophon {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+        }
+        .x-bar {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .x-bar-content {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2em;
+        }
+        .x-bar-container {
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        .navigation {
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        /* Header Specifics */
+        .x-masthead .x-bar-top:nth-child(1) {
+            height: 30px;
+            font-size: 0.9em;
+            background-color: #404140; /* A slightly lighter black from example */
+        }
+        .x-masthead .x-bar-top:nth-child(1) .x-bar-container {
+            justify-content: flex-end;
+            gap: 15px;
+        }
+        .x-masthead .x-text {
+            color: var(--text-light);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75em;
+            letter-spacing: 0.1em;
+        }
+        .x-masthead .x-text:hover {
+            color: var(--accent-teal);
+        }
+        .x-masthead .x-line {
+            height: 15px;
+            width: 1px;
+            background-color: var(--text-light);
+            border: none;
+        }
+
+        .x-masthead .x-bar-top:nth-child(2) {
+            height: 80px;
+            background-color: var(--primary-dark);
+        }
+        .x-image img {
+            max-height: 50px;
+            width: auto;
+        }
+        .x-menu-inline {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+        .x-anchor-menu-item {
+            color: var(--text-light);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85em;
+            letter-spacing: 0.2em;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .x-anchor-menu-item:hover, .x-anchor-menu-item.x-always-active {
+            color: var(--accent-teal);
+            border-bottom-color: var(--accent-teal);
+        }
+        .x-anchor-content { display: flex; align-items: center; }
+        .x-anchor-sub-indicator { margin-left: 8px; font-size: 0.8em; }
+
+        .x-anchor-button {
+            color: var(--text-light);
+            border: 2px solid var(--text-light);
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .x-anchor-button:hover {
+            background-color: var(--text-light);
+            color: var(--primary-dark);
+        }
+
+        /* Dropdown/Megamenu styles */
+        .megamenu { position: relative; }
+        .megamenu .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            background-color: #222;
+            padding: 20px;
+            border-top: 3px solid var(--accent-teal);
+            list-style: none;
+        }
+        .megamenu:hover .dropdown { display: block; }
+        .megamenu-container .row { display: flex; gap: 20px; }
+        .megamenu-container .row > div { flex: 1; }
+        .megamenu-sub-title {
+            display: block;
+            color: var(--accent-teal);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        .megamenu .sub-menu { list-style: none; padding: 0; }
+        .megamenu .sub-menu a { color: #cccccc; text-decoration: none; font-size: 0.9em; line-height: 1.8; }
+        .megamenu .sub-menu a:hover { color: var(--text-light); }
+        .megamenu .meta-data { color: var(--text-muted); font-size: 0.8em; display: block; }
+
+
+        /* Footer Specifics */
+        .x-colophon { font-size: 0.9em; }
+        .x-colophon .x-bar:nth-of-type(1) { padding: 80px 0; border-top: 1px solid #333; }
+        .x-colophon .x-bar:nth-of-type(2) { height: 65px; box-shadow: 0 -3px 25px rgba(0,0,0,0.15); }
+        .x-colophon .x-bar:nth-of-type(3) { height: 40px; }
+
+        .footer-row-inner { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; width: 100%;}
+        .footer-col h4 {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1em;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        .footer-col p, .footer-col a {
+            color: var(--text-muted);
+            line-height: 1.6;
+            text-decoration: none;
+        }
+        .footer-col a:hover { color: var(--text-light); }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 10px; }
+
+        .footer-bar-content { display: flex; justify-content: center; align-items: center; width: 100%;}
+        .footer-bar-content .x-line { height: 1px; flex-grow: 1; background-color: #333; }
+        .footer-bar-content .x-image { margin: 0 30px; }
+        .footer-bar-content .x-image img { max-height: 40px; }
+        
+        .footer-bottom-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; width: 100%;}
+        .footer-copyright p, .footer-social a { color: var(--text-muted); font-size: 0.85em; }
+        .footer-social a { margin-left: 15px; }
+        .footer-social a:hover { color: var(--text-light); }
+
+        /* --- END: New Header and Footer Styles from Example --- */
+
+        /* Content Styles */
+        main {
+            padding-top: 110px; /* Combined height of the two header bars */
+        }
+
+        .hero-section {
+            padding: 20vh 0;
+            background: url('https://cedarcrestchurch.com/wp-content/uploads/2024/07/ccphotos616-1972.jpg') no-repeat center center/cover;
+            position: relative;
+            text-align: center;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.25);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-content h1 {
+            font-family: 'poynter-new', serif;
+            font-size: 3.5em;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+        .hero-content .subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.15em;
+            line-height: 1.6;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 0.5em;
+        }
+
+        .content-section {
+            padding: 10vh 0;
+        }
+        .section-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .section-grid.reverse {
+            direction: rtl;
+        }
+        .section-grid.reverse > * {
+            direction: ltr;
+        }
+        .section-grid img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .bg-white {
+            background-color: var(--bg-light);
+        }
+        .bg-black {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+        }
+        .section-content h2 {
+            font-size: 1em;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 0.35em;
+        }
+        .section-content h3 {
+            font-family: 'poynter-new', serif;
+            font-size: 3em;
+            line-height: 1.1;
+            margin-bottom: 0.5em;
+        }
+        .bg-black h2 {
+            color: var(--text-muted);
+        }
+        .bg-black h3 {
+             color: var(--text-light);
+        }
+        .section-content p {
+            line-height: 1.6;
+            margin-bottom: 1.5em;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.855em 1.05em;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1em;
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 1em;
+        }
+        .btn-black {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+        }
+        .btn-black:hover {
+            background-color: var(--accent-teal);
+        }
+        .btn-white {
+            background-color: var(--text-light);
+            color: var(--primary-dark);
+        }
+        .btn-white:hover {
+             background-color: var(--accent-teal);
+             color: var(--text-light);
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        mark-kids, mark-students, mark-groups {
+            display: inline-block;
+            line-height: 0em;
+            padding-bottom: 0.5em;
+            background-color: var(--accent-teal);
+        }
+
+        .intro-section {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .intro-section h2 {
+            color: var(--text-muted);
+        }
+        .intro-section h3 {
+            font-family: 'poynter-new', serif;
+            font-size: 3em;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 3em;
+        }
+        .card {
+            text-align: center;
+        }
+        .card img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 1.5em;
+        }
+        .card h4 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1em;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin: 1em 0;
+        }
+        .card hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 1em 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .navigation, .x-anchor-button {
+                display: none;
+            }
+            .section-grid,
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-row-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 767px) {
+            .footer-row-inner {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    
+    <!-- START: New Header HTML -->
+    <header class="x-masthead" role="banner">
+      <!-- Top Bar -->
+      <div class="x-bar x-bar-top x-bar-h x-bar-relative x-bar-outer-spacers" style="background-color: #404140; height: 30px;">
+        <div class="x-bar-content">
+          <div class="x-bar-container" style="justify-content: flex-end;">
+            <a href="#" class="x-text x-text-headline">
+              <div class="x-text-content"><div class="x-text-content-text"><div class="x-text-content-text-primary">Sundays at 8am, 9:30am, 11am</div></div></div>
+            </a>
+            <hr class="x-line">
+            <a href="#" class="x-text x-text-headline">
+              <div class="x-text-content"><div class="x-text-content-text"><div class="x-text-content-text-primary">Community Dashboard</div></div></div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Main Navigation Bar -->
+      <div class="x-bar x-bar-top x-bar-h x-bar-relative x-bar-outer-spacers" style="height: 80px;">
+        <div class="x-bar-content">
+          <div class="x-bar-container">
+            <a class="x-image" href="index.html">
+              <img src="images/logo-white.png" alt="Logo">
+            </a>
+            <nav class="navigation">
+              <ul class="x-menu x-menu-inline">
+                <li><a class="x-anchor x-anchor-menu-item" href="about.html"><div class="x-anchor-content"><div class="x-anchor-text"><span class="x-anchor-text-primary">About</span></div></div></a></li>
+                <li><a class="x-anchor x-anchor-menu-item" href="connect.html"><div class="x-anchor-content"><div class="x-anchor-text"><span class="x-anchor-text-primary">Connect</span></div></div></a></li>
+                <li><a class="x-anchor x-anchor-menu-item" href="nextsteps.html"><div class="x-anchor-content"><div class="x-anchor-text"><span class="x-anchor-text-primary">Next Steps</span></div></div></a></li>
+                <li><a class="x-anchor x-anchor-menu-item" href="events.html"><div class="x-anchor-content"><div class="x-anchor-text"><span class="x-anchor-text-primary">Events</span></div></div></a></li>
+                <li><a class="x-anchor x-anchor-menu-item" href="sermons.html"><div class="x-anchor-content"><div class="x-anchor-text"><span class="x-anchor-text-primary">Sermons</span></div></div></a></li>
+                <li><a class="x-anchor x-anchor-menu-item" href="impact.html"><div class="x-anchor-content"><div class="x-anchor-text"><span class="x-anchor-text-primary">Impact</span></div></div></a></li>
+                <li><a class="x-anchor x-anchor-menu-item" href="give.html"><div class="x-anchor-content"><div class="x-anchor-text"><span class="x-anchor-text-primary">Give</span></div></div></a></li>
+                <li class="megamenu">
+                    <a class="x-anchor x-anchor-menu-item" href="shortcodes.html">
+                        <div class="x-anchor-content">
+                            <div class="x-anchor-text"><span class="x-anchor-text-primary">Mega Menu</span></div>
+                            <i class="x-anchor-sub-indicator" aria-hidden="true">▼</i>
+                        </div>
+                    </a>
+                    <ul class="dropdown">
+                        <li>
+                            <div class="megamenu-container">
+                                <div class="row">
+                                    <div class="col-md-3 hidden-sm hidden-xs">
+                                        <span class="megamenu-sub-title"><i class="fa fa-bell"></i> Today's Prayer</span>
+                                        <iframe width="100%" height="150" src="https://player.vimeo.com/video/19564018?title=0&byline=0&color=027368"></iframe>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span class="megamenu-sub-title"><i class="fa fa-pagelines"></i> Our Ministries</span>
+                                        <ul class="sub-menu">
+                                            <li><a href="ministry.html">Women's Ministry</a></li>
+                                            <li><a href="ministry.html">Men's Ministry</a></li>
+                                            <li><a href="ministry.html">Children's Ministry</a></li>
+                                            <li><a href="ministry.html">Youth Ministry</a></li>
+                                            <li><a href="ministry.html">Prayer Requests</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span class="megamenu-sub-title"><i class="fa fa-clock-o"></i> Upcoming Events</span>
+                                        <ul class="sub-menu">
+                                            <li><a href="single-event.html">Monday Prayer</a> <span class="meta-data">Monday | 06:00 PM</span></li>
+                                            <li><a href="single-event.html">Staff members meet</a> <span class="meta-data">Tuesday | 08:00 AM</span></li>
+                                            <li><a href="single-event.html">Evening Prayer</a> <span class="meta-data">Friday | 07:00 PM</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span class="megamenu-sub-title"><i class="fa fa-cog"></i> Features</span>
+                                        <ul class="sub-menu">
+                                            <li><a href="shortcodes.html">Shortcodes</a></li>
+                                            <li><a href="typography.html">Typography</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+              </ul>
+            </nav>
+            <a class="x-anchor x-anchor-button" tabindex="0" href="#">
+              <div class="x-anchor-content"><div class="x-anchor-text"><span class="x-anchor-text-primary">log in</span></div></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- END: New Header HTML -->
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content container">
+                <p class="subtitle">connect</p>
+                <h1>there is a place for you at Manifestation Outreach.</h1>
+            </div>
+        </section>
+
+        <section class="content-section bg-white">
+            <div class="container section-grid reverse">
+                <div>
+                    <img src="https://cedarcrestchurch.com/wp-content/uploads/2025/05/Easter-Sun-kids-32.jpg" alt="Kids Ministry">
+                </div>
+                <div class="section-content">
+                    <h2>Kids</h2>
+                    <h3><mark-kids>leading kids</mark-kids> to discover who Jesus is and how to walk with Him!</h3>
+                    <p>We LOVE our kiddos! Every Sunday we have age-appropriate, Bible based teaching, fun activities, and dynamic worship for your infant-5th grader!</p>
+                    <a href="kids.html" class="btn btn-black">learn more</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section bg-black">
+            <div class="container section-grid">
+                <div>
+                    <img src="https://cedarcrestchurch.com/wp-content/uploads/2022/07/connect-students_1200x800.jpg" alt="Students Ministry">
+                </div>
+                <div class="section-content">
+                    <h2>Students</h2>
+                    <h3>a place <mark-students>for students</mark-students> to encounter Jesus and find community.</h3>
+                    <p>Manifestation Outreach Students empowers the next generation as they encounter Jesus, connect with others, and find their purpose. By partnering with parents and creating spaces specifically for middle and high school students, we help them navigate life by finding Jesus.</p>
+                    <a href="students.html" class="btn btn-white">learn more</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section bg-white">
+            <div class="container">
+                <div class="intro-section">
+                    <h2>Adult Ministries</h2>
+                    <h3>no matter where you are in life, there is a <mark-groups>place for you</mark-groups> here.</h3>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <img src="https://cedarcrestchurch.com/wp-content/uploads/2022/07/connect-growth_1200x800.jpg" alt="Growth Track">
+                        <hr>
+                        <h4>growth track</h4>
+                        <hr>
+                        <p>The easiest way to get involved at Manifestation Outreach! Discover your purpose and live the life you were created for.</p>
+                        <hr>
+                        <a href="#" class="btn btn-black">learn more</a>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://cedarcrestchurch.com/wp-content/uploads/2022/07/connect-groups_1200x800.jpg" alt="Small Groups">
+                        <hr>
+                        <h4>small groups</h4>
+                        <hr>
+                        <p>Small Groups are the backbone of Manifestation Outreach. Find a group where you can grow in your faith, get encouraged, and create community.</p>
+                        <hr>
+                        <a href="#" class="btn btn-black">learn more</a>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://cedarcrestchurch.com/wp-content/uploads/2022/07/connect-school_1200x800.jpg" alt="Discipleship School">
+                        <hr>
+                        <h4>discipleship school</h4>
+                        <hr>
+                        <p>Grow in your understanding of Scripture, who God is and His mission for His people.</p>
+                        <hr>
+                        <a href="churchofgod.html" class="btn btn-black">learn more</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- START: New Footer HTML -->
+    <footer class="x-colophon" role="contentinfo">
+        <div class="x-bar">
+            <div class="x-bar-content">
+                <div class="container">
+                    <div class="footer-row-inner">
+                        <div class="footer-col">
+                            <h4>About our Church</h4>
+                            <p>OFF AKINJAGUNLA, AGIODO-OJOJO ROAD, IMOLE OLORUN TAN, OKE-AYO STREET, ONDO TOWN, ONDO STATE, NIGERIA</p>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a href="index.html">Church Home</a></li>
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="events.html">All Events</a></li>
+                                <li><a href="sermons.html">Sermons Archive</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Ministries</h4>
+                            <ul>
+                                <li><a href="ministry.html">Kids</a></li>
+                                <li><a href="ministry.html">Students</a></li>
+                                <li><a href="ministry.html">Small Groups</a></li>
+                                <li><a href="ministry.html">Discipleship</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Our Church on Twitter</h4>
+                            <p>Follow us on Twitter for the latest updates and inspiration.</p>
+                            <a href="#">@ManifestOutreach</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="x-bar">
+            <div class="x-bar-content footer-bar-content">
+                <div class="container">
+                    <div class="footer-bar-content">
+                        <hr class="x-line">
+                        <a class="x-image" href="/"><img src="images/logo-white.png" alt="Footer Logo"></a>
+                        <hr class="x-line">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="x-bar">
+            <div class="x-bar-content">
+                <div class="container footer-bottom-container">
+                    <div class="footer-copyright">
+                        <p>&copy; <script>document.write(new Date().getFullYear());</script> Manifestation. All Rights Reserved</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a>
+                        <a href="#" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="#" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a>
+                        <a href="#" target="_blank" title="YouTube"><i class="fa fa-youtube"></i></a>
+                        <a href="#" target="_blank" title="RSS Feed"><i class="fa fa-rss"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END: New Footer HTML -->
+
+</body>
+</html>
+
