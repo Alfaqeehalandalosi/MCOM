@@ -96,7 +96,7 @@ $conn->close();
              <a href="#" class="header-logo"><img src="https://via.placeholder.com/200x50/FFFFFF/000000?text=Your+Logo" alt="Logo"></a>
             <nav class="navigation">
                  <ul class="sf-menu">
-                    <li><a href="index.php">Home</a></li>
+                    <li><a href="dashboard.php">Home</a></li>
                     <li><a href="events.php">Events</a></li>
                     <li><a href="shop.php">Shop</a></li>
                     <li><a href="donate.php">Donate</a></li>
