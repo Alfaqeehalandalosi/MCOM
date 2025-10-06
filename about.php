@@ -239,9 +239,7 @@
             </div>
           </div>
           <div class="col-md-9">
-            <header class="single-post-header clearfix">
-              <h2 class="post-title">Our Location</h2>
-            </header>
+            <?php include 'header.php'; ?>
             <div class="post-content">
               <div id="gmap">
                 <iframe src="https://maps.google.com/maps?q=OFF%20AKINJAGUNLA,%20AGIODO-OJOJO%20ROAD,%20IMOLE%20OLORUN%20TAN,%20OKE-AYO%20STREET,%20ONDO%20TOWN,%20ONDO%20STATE,%20NIGERIA&t=m&z=14&output=embed"></iframe>

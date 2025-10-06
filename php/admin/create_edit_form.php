@@ -121,6 +121,39 @@ $conn->close();
         .remove-field-btn { position: absolute; top: 10px; right: 10px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-weight: bold; }
         .add-field-btn { margin-top: 10px; padding: 10px 15px; background-color: #007bff; color: white; border: none; cursor: pointer; border-radius: 4px; }
         .field-placeholder { background: #eef7ff; border: 2px dashed #007bff; height: 100px; margin-bottom: 10px; }
+        /* Add these new styles for the tag input */
+.tag-input-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+.tag-remove-btn {
+    margin-left: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.tag-input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 1em;
+}
     </style>
 </head>
 <body>
@@ -184,7 +217,13 @@ $conn->close();
                                 <div><label style="visibility:hidden;">Required</label><label><input type="checkbox" name="is_required[<?php echo $index; ?>]" value="1" <?php if ($field['is_required']) echo 'checked'; ?>> Required</label></div>
                             </div>
                             <div class="field-row options-container" style="<?php if(!in_array($field['field_type'], ['select','checkbox','radio'])) echo 'display:none;'; ?>">
-                                <div style="width:100%"><label>Options (comma-separated)</label><textarea name="field_options[]"><?php echo htmlspecialchars($field['field_options']); ?></textarea></div>
+                                <div style="width:100%">
+    <label>Options</label>
+    <div class="tag-input-container">
+        <input type="text" class="tag-input" placeholder="Type an option and press Enter">
+        <input type="hidden" class="hidden-options-input" name="field_options[]" value="<?php echo htmlspecialchars($field['field_options']); ?>">
+    </div>
+</div>
                             </div>
                         </div>
                     <?php endforeach; endif; ?>
@@ -209,69 +248,118 @@ $conn->close();
                 <div><label style="visibility:hidden;">Required</label><label><input type="checkbox" class="is-required-checkbox" value="1"> Required</label></div>
             </div>
             <div class="field-row options-container" style="display:none;">
-                <div style="width:100%"><label>Options (comma-separated)</label><textarea name="field_options[]"></textarea></div>
+                <div style="width:100%">
+    <label>Options</label>
+    <div class="tag-input-container">
+        <input type="text" class="tag-input" placeholder="Type an option and press Enter">
+        <input type="hidden" class="hidden-options-input" name="field_options[]" value="">
+    </div>
+</div>
             </div>
         </div>
     </template>
 
     <script>
-    function updateFormTitle(selectElement) {
-        const selectedOption = selectElement.options[selectElement.selectedIndex];
-        const eventTitle = selectedOption.dataset.title;
-        const formTitleInput = document.getElementById('title');
-        const formSlugInput = document.getElementById('form_slug');
-        if (eventTitle) {
-            formTitleInput.value = eventTitle + " Registration";
-            formSlugInput.value = eventTitle.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') + "-registration";
-        } else {
-            formTitleInput.value = '';
-            formSlugInput.value = '';
-        }
+$(function() {
+    // --- START: Tag Input Logic ---
+    
+    function createTag(text, container) {
+        const tag = $('<span class="tag"></span>').text(text);
+        const removeBtn = $('<span class="tag-remove-btn">&times;</span>');
+        tag.append(removeBtn);
+        container.before(tag);
     }
 
-    // Use jQuery's document ready function for all event listeners
-    $(function() {
-        let fieldIndex = <?php echo count($form_fields); ?>;
-        const fieldsContainer = $('#fields-container');
+    function updateHiddenInput(container) {
+        const tags = container.parent().find('.tag');
+        const hiddenInput = container.parent().find('.hidden-options-input');
+        const tagValues = $.map(tags, (tag) => $(tag).clone().children().remove().end().text().trim());
+        hiddenInput.val(tagValues.join(','));
+    }
 
-        // Function to toggle the options text area
-        function toggleOptions(selectElement) {
-            const $fieldBlock = $(selectElement).closest('.field-block');
-            const $optionsContainer = $fieldBlock.find('.options-container');
-            const showOptions = ['select', 'checkbox', 'radio'].includes($(selectElement).val());
-            $optionsContainer.toggle(showOptions);
-            $fieldBlock.find('.field-block-header strong').text($(selectElement).find('option:selected').text());
-        }
-
-        // Attach event listener for adding a new field
-        $('#add-field-btn').on('click', function() {
-            const template = $('#field-template')[0];
-            const clone = template.content.cloneNode(true);
-            const $clone = $(clone);
-
-            // Uniquely name the 'is_required' checkbox for this new field
-            $clone.find('.is-required-checkbox').attr('name', `is_required[${fieldIndex}]`).removeClass('is-required-checkbox');
-            
-            fieldsContainer.append($clone);
-            fieldIndex++;
-        });
-
-        // Use event delegation for dynamically added elements
-        fieldsContainer.on('click', '.remove-field-btn', function() {
-            $(this).closest('.field-block').remove();
-        });
-
-        fieldsContainer.on('change', '.field-type-select', function() {
-            toggleOptions(this);
-        });
-
-        // Initialize drag-and-drop
-        fieldsContainer.sortable({
-            handle: ".field-block-header",
-            placeholder: "field-placeholder",
-            forcePlaceholderSize: true
-        });
+    // Initialize tags for existing fields on page load
+    $('.tag-input-container').each(function() {
+        const container = $(this);
+        const hiddenInput = container.find('.hidden-options-input');
+        const initialValues = hiddenInput.val().split(',').filter(val => val.trim() !== '');
+        initialValues.forEach(val => createTag(val.trim(), container.find('.tag-input')));
     });
-    </script>
+
+    // Event listener for creating tags
+    $(document).on('keydown', '.tag-input', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const input = $(this);
+            const value = input.val().trim();
+            if (value) {
+                createTag(value, input);
+                updateHiddenInput(input.parent());
+                input.val('');
+            }
+        }
+    });
+
+    // Event listener for removing tags
+    $(document).on('click', '.tag-remove-btn', function() {
+        const tag = $(this).parent();
+        const container = tag.parent();
+        tag.remove();
+        updateHiddenInput(container);
+    });
+
+    // --- END: Tag Input Logic ---
+
+
+    // --- Your existing Form Builder Logic ---
+    let fieldIndex = <?php echo count($form_fields); ?>;
+    const fieldsContainer = $('#fields-container');
+
+    function toggleOptions(selectElement) {
+        const $fieldBlock = $(selectElement).closest('.field-block');
+        const $optionsContainer = $fieldBlock.find('.options-container');
+        const showOptions = ['select', 'checkbox', 'radio'].includes($(selectElement).val());
+        $optionsContainer.toggle(showOptions);
+        $fieldBlock.find('.field-block-header strong').text($(selectElement).find('option:selected').text());
+    }
+
+    $('#add-field-btn').on('click', function() {
+        const template = $('#field-template')[0];
+        const clone = template.content.cloneNode(true);
+        const $clone = $(clone);
+        $clone.find('.is-required-checkbox').attr('name', `is_required[${fieldIndex}]`).removeClass('is-required-checkbox');
+        fieldsContainer.append($clone);
+        fieldIndex++;
+    });
+
+    fieldsContainer.on('click', '.remove-field-btn', function() {
+        $(this).closest('.field-block').remove();
+    });
+
+    fieldsContainer.on('change', '.field-type-select', function() {
+        toggleOptions(this);
+    });
+
+    fieldsContainer.sortable({
+        handle: ".field-block-header",
+        placeholder: "field-placeholder",
+        forcePlaceholderSize: true
+    });
+});
+
+// Your existing function to update the form title
+function updateFormTitle(selectElement) {
+    const selectedOption = selectElement.options[selectElement.selectedIndex];
+    const eventTitle = selectedOption.dataset.title;
+    const formTitleInput = document.getElementById('title');
+    const formSlugInput = document.getElementById('form_slug');
+    if (eventTitle) {
+        formTitleInput.value = eventTitle + " Registration";
+        formSlugInput.value = eventTitle.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') + "-registration";
+    } else {
+        formTitleInput.value = '';
+        formSlugInput.value = '';
+    }
+}
+</script>
 </body>
 </html>

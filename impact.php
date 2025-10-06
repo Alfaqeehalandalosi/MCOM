@@ -385,7 +385,7 @@
     <link rel="stylesheet" href="css/header.css">
 </head>
 <body>
-    <!-- Header will be injected at runtime by js/header-loader.js -->
+    <?php include 'header.php'; ?>
 
     <main>
         <section class="section-hero">
@@ -550,6 +550,6 @@
         }, { threshold: 0.1 });
         animatedElements.forEach(el => observer.observe(el));
     </script>
-    <script src="js/header-loader.js"></script>
+    
 </body>
 </html>

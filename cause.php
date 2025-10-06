@@ -57,13 +57,13 @@
                     	<nav class="top-menus pull-right">
                         	<ul>
                             	<li>
-                                	<a href="plan-visit.html">Plan your visit</a>
+                                	<a href="plan-visit.php">Plan your visit</a>
                             	</li>
                             	<li>
-                               		<a href="events-calendar.html">Calendar</a>
+                               		<a href="events-calendar.php">Calendar</a>
                             	</li>
                             	<li>
-                                	<a href="donate.html">Donate Now</a>
+                                	<a href="donate.php">Donate Now</a>
                             	</li>
                         	</ul>
                     	</nav>
@@ -74,16 +74,16 @@
       	<!-- End Top Row -->
         <div class="topbar">
         	<div class="container">
-                <h1 class="logo"> <a href="index.html"><img src="images/logo.png" alt="Logo"></a> </h1>
+                <h1 class="logo"> <a href="index.php"><img src="images/logo.png" alt="Logo"></a> </h1>
                 <a href="#" class="visible-sm visible-xs menu-toggle"><i class="fa fa-bars"></i></a> 
                 <div class="main-menu-wrapper">
                     <nav class="navigation">
                       <ul class="sf-menu">
-                        <li><a href="index.html">Home</a>
+                        <li><a href="index.php">Home</a>
                         </li>
-                        <li><a href="about.html">About Us</a>
+                        <li><a href="about.php">About Us</a>
                         </li>
-                        <li class="megamenu"><a href="shortcodes.html">Mega Menu</a>
+                        <li class="megamenu"><a href="shortcodes.php">Mega Menu</a>
                           <ul class="dropdown">
                             <li>
                               <div class="megamenu-container container">
@@ -93,27 +93,27 @@
                                   </div>
                                   <div class="col-md-3"> <span class="megamenu-sub-title"><i class="fa fa-pagelines"></i> Our Ministries</span>
                                     <ul class="sub-menu">
-                                      <li><a href="ministry.html">Women's Ministry</a></li>
-                                      <li><a href="ministry.html">Men's Ministry</a></li>
-                                      <li><a href="ministry.html">Children's Ministry</a></li>
-                                      <li><a href="ministry.html">Youth Ministry</a></li>
-                                      <li><a href="ministry.html">Prayer Requests</a></li>
+                                      <li><a href="ministry.php">Women's Ministry</a></li>
+                                      <li><a href="ministry.php">Men's Ministry</a></li>
+                                      <li><a href="ministry.php">Children's Ministry</a></li>
+                                      <li><a href="ministry.php">Youth Ministry</a></li>
+                                      <li><a href="ministry.php">Prayer Requests</a></li>
                                     </ul>
                                   </div>
                                   <div class="col-md-3"> <span class="megamenu-sub-title"><i class="fa fa-clock-o"></i> Upcoming Events</span>
                                     <ul class="sub-menu">
-                                      <li><a href="single-event.html">Monday Prayer</a> <span class="meta-data">Monday | 06:00 PM</span> </li>
-                                      <li><a href="single-event.html">Staff members meet</a> <span class="meta-data">Tuesday | 08:00 AM</span> </li>
-                                      <li><a href="single-event.html">Evening Prayer</a> <span class="meta-data">Friday | 07:00 PM</span> </li>
+                                      <li><a href="single-event.php">Monday Prayer</a> <span class="meta-data">Monday | 06:00 PM</span> </li>
+                                      <li><a href="single-event.php">Staff members meet</a> <span class="meta-data">Tuesday | 08:00 AM</span> </li>
+                                      <li><a href="single-event.php">Evening Prayer</a> <span class="meta-data">Friday | 07:00 PM</span> </li>
                                     </ul>
                                   </div>
                                   <div class="col-md-3"> <span class="megamenu-sub-title"><i class="fa fa-cog"></i> Features</span>
                                     <ul class="sub-menu">
-                                      <li><a href="shortcodes.html">Shortcodes</a></li>
-                                      <li><a href="typography.html">Typography</a></li>
-                    			<li><a href="shop.html">Shop <span class="label label-danger">New</span></a></li>
-                    			<li><a href="shop-sidebar.html">Shop Sidebar <span class="label label-danger">New</span></a></li>
-                    			<li><a href="shop-product.html">Single Product <span class="label label-danger">New</span></a></li>
+                                      <li><a href="shortcodes.php">Shortcodes</a></li>
+                                      <li><a href="typography.php">Typography</a></li>
+                    			<li><a href="shop.php">Shop <span class="label label-danger">New</span></a></li>
+                    			<li><a href="shop-sidebar.php">Shop Sidebar <span class="label label-danger">New</span></a></li>
+                    			<li><a href="shop-product.php">Single Product <span class="label label-danger">New</span></a></li>
                                     </ul>
                                   </div>
                                 </div>
@@ -121,18 +121,18 @@
                             </li>
                           </ul>
                         </li>
-                        <li><a href="events.html">Events</a>
+                        <li><a href="events.php">Events</a>
                           <ul class="dropdown">
-                            <li><a href="events-timeline.html">Events Timeline</a></li>
-                            <li><a href="google-calendar.html">Google Calender</a></li>
-                            <li><a href="events-calendar.html">Events Calender</a></li>
+                            <li><a href="events-timeline.php">Events Timeline</a></li>
+                            <li><a href="google-calendar.php">Google Calender</a></li>
+                            <li><a href="events-calendar.php">Events Calender</a></li>
                           </ul>
                         </li>
-                        <li><a href="sermons.html">Sermons</a>
+                        <li><a href="sermons.php">Sermons</a>
                           <ul class="dropdown">
-                            <li><a href="sermon-albums.html">Sermon Albums</a></li>
-                            <li><a href="sermons.html">Sermons Archive</a></li>
-                            <li><a href="single-sermon.html">Single Sermon</a></li>
+                            <li><a href="sermon-albums.php">Sermon Albums</a></li>
+                            <li><a href="sermons.php">Sermons Archive</a></li>
+                            <li><a href="single-sermon.php">Single Sermon</a></li>
                           </ul>
                         </li>
                         <li><a href="gallery-2cols-pagination.html">Gallery</a>
@@ -144,26 +144,26 @@
                                 <li><a href="gallery-4cols-pagination.html">4 Columns</a></li>
                               </ul>
                             </li>
-                            <li><a href="gallery-2cols-filter.html">With Filter</a>
+                            <li><a href="gallery-2cols-filter.php">With Filter</a>
                               <ul class="dropdown">
-                                <li><a href="gallery-2cols-filter.html">2 Columns</a></li>
-                                <li><a href="gallery-3cols-filter.html">3 Columns</a></li>
-                                <li><a href="gallery-4cols-filter.html">4 Columns</a></li>
+                                <li><a href="gallery-2cols-filter.php">2 Columns</a></li>
+                                <li><a href="gallery-3cols-filter.php">3 Columns</a></li>
+                                <li><a href="gallery-4cols-filter.php">4 Columns</a></li>
                               </ul>
                             </li>
-                            <li><a href="gallery-masonry.html">Masonry Grid</a></li>
+                            <li><a href="gallery-masonry.php">Masonry Grid</a></li>
                           </ul>
                         </li>
-                        <li><a href="blog-masonry.html">Blog</a>
+                        <li><a href="blog-masonry.php">Blog</a>
                           <ul class="dropdown">
-                            <li><a href="blog-masonry.html">Masonry Blog</a></li>
-                            <li><a href="blog-full-width.html">Full Width Blog</a></li>
-                            <li><a href="blog-timeline.html">Timeline Blog</a></li>
-                            <li><a href="blog-medium-thumbnails.html">Medium Thumbnails</a></li>
-                            <li><a href="blog-post.html">Single Blog Post</a></li>
+                            <li><a href="blog-masonry.php">Masonry Blog</a></li>
+                            <li><a href="blog-full-width.php">Full Width Blog</a></li>
+                            <li><a href="blog-timeline.php">Timeline Blog</a></li>
+                            <li><a href="blog-medium-thumbnails.php">Medium Thumbnails</a></li>
+                            <li><a href="blog-post.php">Single Blog Post</a></li>
                           </ul>
                         </li>
-                        <li><a href="causes.html">Causes</a>
+                        <li><a href="causes.php">Causes</a>
                         </li>
                       </ul>
                     </nav>
@@ -178,7 +178,7 @@
       <div class="row">
         <div class="col-md-12">
           <ol class="breadcrumb" style="padding-top: 120px;">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li class="active">Causes</li>
           </ol>
         </div>
@@ -206,11 +206,11 @@
             <article class="post cause-item">
               <div class="row">
                 <div class="col-md-4 col-sm-4">
-                	<a href="single-cause.html"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt="" class="img-thumbnail"></a>
+                	<a href="single-cause.php"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt="" class="img-thumbnail"></a>
                   	<a href="#" class="btn btn-primary btn-block donate-paypal" data-toggle="modal" data-target="#PaymentModal">Donate Now</a>
                 </div>
                 <div class="col-md-8 col-sm-8">
-                  <h3><a href="single-cause.html">Education for Masai children</a></h3>
+                  <h3><a href="single-cause.php">Education for Masai children</a></h3>
                   <span class="post-meta meta-data">
                   	<span><i class="fa fa-calendar"></i> 28th Jan, 2025</span>
                     <span><i class="fa fa-archive"></i> <a href="#">Education</a>, <a href="#">Africa</a></span>
@@ -231,11 +231,11 @@
             <article class="post cause-item">
               <div class="row">
                 <div class="col-md-4 col-sm-4">
-                	<a href="single-cause.html"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt="" class="img-thumbnail"></a>
+                	<a href="single-cause.php"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt="" class="img-thumbnail"></a>
                   	<a href="#" class="btn btn-primary btn-block donate-paypal" data-toggle="modal" data-target="#PaymentModal">Donate Now</a>
                 </div>
                 <div class="col-md-8 col-sm-8">
-                  <h3><a href="single-cause.html">Stop Child Labour</a></h3>
+                  <h3><a href="single-cause.php">Stop Child Labour</a></h3>
                   <span class="post-meta meta-data">
                   	<span><i class="fa fa-calendar"></i> 28th Jan, 2025</span>
                     <span><i class="fa fa-archive"></i> <a href="#">Child</a>, <a href="#">India</a></span>
@@ -256,11 +256,11 @@
             <article class="post cause-item">
               <div class="row">
                 <div class="col-md-4 col-sm-4">
-                	<a href="single-cause.html"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt="" class="img-thumbnail"></a>
+                	<a href="single-cause.php"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt="" class="img-thumbnail"></a>
                   	<a href="#" class="btn btn-primary btn-block donate-paypal" data-toggle="modal" data-target="#PaymentModal">Donate Now</a>
                 </div>
                 <div class="col-md-8 col-sm-8">
-                  <h3><a href="single-cause.html">Africa's thirst</a></h3>
+                  <h3><a href="single-cause.php">Africa's thirst</a></h3>
                   <span class="post-meta meta-data">
                   	<span><i class="fa fa-calendar"></i> 28th Jan, 2025</span>
                     <span><i class="fa fa-archive"></i> <a href="#">Africa</a>, <a href="#">Water</a></span>
@@ -343,11 +343,11 @@
             </div>
             <ul class="pagination">
               <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-              <li><a href="causes.html?cause=1">1</a></li>
-              <li><a href="causes.html?cause=2">2</a></li>
-              <li><a href="causes.html?cause=3">3</a></li>
-              <li><a href="causes.html?cause=4">4</a></li>
-              <li><a href="causes.html?cause=5">5</a></li>
+              <li><a href="causes.php?cause=1">1</a></li>
+              <li><a href="causes.php?cause=2">2</a></li>
+              <li><a href="causes.php?cause=3">3</a></li>
+              <li><a href="causes.php?cause=4">4</a></li>
+              <li><a href="causes.php?cause=5">5</a></li>
               <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
             </ul>
           </div>
@@ -396,11 +396,11 @@
         <div class="col-md-4 col-sm-4 widget footer-widget">
           <h4 class="footer-widget-title">Blogroll</h4>
           <ul>
-            <li><a href="index.html">Church Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="events.html">All Events</a></li>
-            <li><a href="sermons.html">Sermons Archive</a></li>
-            <li><a href="blog-masonry.html">Our Blog</a></li>
+            <li><a href="index.php">Church Home</a></li>
+            <li><a href="about.php">About Us</a></li>
+            <li><a href="events.php">All Events</a></li>
+            <li><a href="sermons.php">Sermons Archive</a></li>
+            <li><a href="blog-masonry.php">Our Blog</a></li>
           </ul>
         </div>
         <div class="col-md-4 col-sm-4 widget footer-widget">

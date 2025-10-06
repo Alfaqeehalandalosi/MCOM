@@ -692,7 +692,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>God is for you,<br>and so are we.</h1>
-            <a href="newhere.html" class="btn">I'm New</a>
+            <a href="newhere.php" class="btn">I'm New</a>
             
         </div>
         

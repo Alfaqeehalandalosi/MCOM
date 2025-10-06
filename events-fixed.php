@@ -374,7 +374,7 @@
             <div class="container">
                 <div class="event-list-container">
 
-                    <a href="#" class="event-list-item">
+                    <a href="php/event_details.php?id=<?php echo $event['id']; ?>" class="event-list-item">
                         <div class="event-image-wrap">
                             <div class="event-image" style="background-image: url('https://images.subsplash.com/image.jpg?id=8f19b6aa-08c7-4ddb-b013-387c3c5a4016&w=400&h=225');"></div>
                             <div class="date-overlay">
@@ -389,7 +389,7 @@
                         </div>
                     </a>
 
-                    <a href="#" class="event-list-item">
+                    <a href="php/event_details.php?id=<?php echo $event['id']; ?>" class="event-list-item">
                         <div class="event-image-wrap">
                             <div class="event-image" style="background-image: url('https://images.subsplash.com/image.jpg?id=58b1ab4d-bbe4-4935-8a42-8d86c0823071&w=400&h=225');"></div>
                             <div class="date-overlay">
@@ -404,7 +404,7 @@
                         </div>
                     </a>
 
-                    <a href="#" class="event-list-item">
+                    <a href="php/event_details.php?id=<?php echo $event['id']; ?>" class="event-list-item">
                         <div class="event-image-wrap">
                             <div class="event-image" style="background-image: url('https://images.subsplash.com/image.jpg?id=b20cfadc-6bb3-4db6-8f7a-e8a303c54ace&w=400&h=225');"></div>
                             <div class="date-overlay">
