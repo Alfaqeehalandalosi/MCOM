@@ -2,30 +2,38 @@
 require_once 'admin_check.php';
 require_once '../db_connect.php';
 
-// Check if the action is 'delete' and an ID is provided
-if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
-    
-    $event_id = (int)$_GET['id'];
+header('Content-Type: application/json'); // Respond with JSON for all actions
+$action = $_GET['action'] ?? '';
+$event_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-    // Use a prepared statement to prevent SQL injection
-    $stmt = $conn->prepare("DELETE FROM events WHERE id = ?");
-    $stmt->bind_param("i", $event_id);
-
-    // Execute the query
-    if ($stmt->execute()) {
-        // Success: Redirect back to the manage page with a success message
-        header("Location: manage_events.php?message=deletesuccess");
-    } else {
-        // Failure: Redirect with an error message
-        header("Location: manage_events.php?message=deleteerror");
+if ($event_id > 0) {
+    if ($action == 'delete') {
+        $stmt = $conn->prepare("DELETE FROM events WHERE id = ?");
+        $stmt->bind_param("i", $event_id);
+        if ($stmt->execute()) {
+            echo json_encode(['status' => 'success', 'message' => 'Event deleted successfully.']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Error deleting event.']);
+        }
+        $stmt->close();
+    } 
+    // --- NEW LOGIC FOR CANCELLING AN EVENT ---
+    elseif ($action == 'cancel') {
+        $stmt = $conn->prepare("UPDATE events SET status = 'Cancelled' WHERE id = ?");
+        $stmt->bind_param("i", $event_id);
+        if ($stmt->execute()) {
+            echo json_encode(['status' => 'success', 'message' => 'Event has been cancelled.']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Error cancelling event.']);
+        }
+        $stmt->close();
+    } 
+    else {
+        echo json_encode(['status' => 'error', 'message' => 'Invalid action specified.']);
     }
-    
-    $stmt->close();
-    $conn->close();
-
 } else {
-    // If the required parameters aren't set, just redirect back
-    header("Location: manage_events.php");
+    echo json_encode(['status' => 'error', 'message' => 'Invalid or missing event ID.']);
 }
-exit(); // Always exit after a header redirect
-?>
+
+$conn->close();
+exit();
