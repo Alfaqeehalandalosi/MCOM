@@ -1,84 +1,47 @@
 <?php
-// Error reporting for debugging
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-require_once 'admin_check.php';
-require_once '../db_connect.php';
-
-// --- INITIALIZE VARIABLES ---
+// --- This is the entire PHP block from your original file ---
+ini_set('display_errors', 1); error_reporting(E_ALL);
+require_once 'admin_check.php'; require_once '../db_connect.php';
 $form_data = ['id' => null, 'title' => '', 'form_slug' => '', 'status' => 'Active', 'event_id' => null];
-$form_fields = [];
-$page_title = 'Create New Form';
-$is_edit_mode = false;
-
-// --- HANDLE EDIT MODE ---
+$form_fields = []; $page_title = 'Create New Form'; $is_edit_mode = false;
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $is_edit_mode = true;
-    $form_id = (int)$_GET['id'];
-    $page_title = 'Edit Form';
-
-    $stmt = $conn->prepare("SELECT * FROM forms WHERE id = ?");
-    $stmt->bind_param("i", $form_id);
-    $stmt->execute();
+    $is_edit_mode = true; $form_id = (int)$_GET['id']; $page_title = 'Edit Form';
+    $stmt = $conn->prepare("SELECT * FROM forms WHERE id = ?"); $stmt->bind_param("i", $form_id); $stmt->execute();
     $result = $stmt->get_result();
-    if ($result->num_rows === 1) {
-        $form_data = $result->fetch_assoc();
-    } else {
-        die("Form not found.");
-    }
+    if ($result->num_rows === 1) { $form_data = $result->fetch_assoc(); } else { die("Form not found."); }
     $stmt->close();
-    
     $stmt_fields = $conn->prepare("SELECT * FROM form_fields WHERE form_id = ? ORDER BY display_order ASC");
-    $stmt_fields->bind_param("i", $form_id);
-    $stmt_fields->execute();
+    $stmt_fields->bind_param("i", $form_id); $stmt_fields->execute();
     $form_fields = $stmt_fields->get_result()->fetch_all(MYSQLI_ASSOC);
     $stmt_fields->close();
 }
-
-// --- SMARTER QUERY TO FETCH ONLY AVAILABLE EVENTS ---
 $sql_events = "SELECT id, title FROM events WHERE id NOT IN (SELECT event_id FROM forms WHERE event_id IS NOT NULL)";
-if ($is_edit_mode && $form_data['event_id']) {
-    $sql_events .= " OR id = " . (int)$form_data['event_id'];
-}
+if ($is_edit_mode && $form_data['event_id']) { $sql_events .= " OR id = " . (int)$form_data['event_id']; }
 $sql_events .= " ORDER BY event_date DESC";
 $events_list = $conn->query($sql_events)->fetch_all(MYSQLI_ASSOC);
 
-// --- HANDLE FORM SUBMISSION (CREATE OR UPDATE) ---
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // --- POST handler now redirects back to the main admin panel ---
     $form_id = $_POST['form_id'] ? (int)$_POST['form_id'] : null;
-    $title = trim($_POST['title']);
-    $form_slug = trim($_POST['form_slug']);
-    $status = $_POST['status'];
-    $event_id = !empty($_POST['event_id']) ? (int)$_POST['event_id'] : null;
-
+    $title = trim($_POST['title']); $form_slug = trim($_POST['form_slug']);
+    $status = $_POST['status']; $event_id = !empty($_POST['event_id']) ? (int)$_POST['event_id'] : null;
     $conn->begin_transaction();
     try {
         if ($is_edit_mode && $form_id) {
             $stmt = $conn->prepare("UPDATE forms SET title = ?, form_slug = ?, status = ?, event_id = ? WHERE id = ?");
-            $stmt->bind_param("sssii", $title, $form_slug, $status, $event_id, $form_id);
-            $stmt->execute();
-            $stmt->close();
-            $stmt_delete = $conn->prepare("DELETE FROM form_fields WHERE form_id = ?");
-            $stmt_delete->bind_param("i", $form_id);
-            $stmt_delete->execute();
-            $stmt_delete->close();
+            $stmt->bind_param("sssii", $title, $form_slug, $status, $event_id, $form_id); $stmt->execute(); $stmt->close();
+            $stmt_delete = $conn->prepare("DELETE FROM form_fields WHERE form_id = ?"); $stmt_delete->bind_param("i", $form_id); $stmt_delete->execute(); $stmt_delete->close();
         } else {
             $stmt = $conn->prepare("INSERT INTO forms (title, form_slug, status, event_id) VALUES (?, ?, ?, ?)");
-            $stmt->bind_param("sssi", $title, $form_slug, $status, $event_id);
-            $stmt->execute();
-            $form_id = $stmt->insert_id;
-            $stmt->close();
+            $stmt->bind_param("sssi", $title, $form_slug, $status, $event_id); $stmt->execute();
+            $form_id = $stmt->insert_id; $stmt->close();
         }
         if (isset($_POST['field_label'])) {
             $stmt_insert_field = $conn->prepare("INSERT INTO form_fields (form_id, field_label, field_type, field_options, is_required, display_order) VALUES (?, ?, ?, ?, ?, ?)");
             foreach ($_POST['field_label'] as $index => $label) {
                 if (!empty(trim($label))) {
-                    $type = $_POST['field_type'][$index];
-                    $options = $_POST['field_options'][$index];
-                    $required = isset($_POST['is_required'][$index]) ? 1 : 0;
-                    $order = $index + 1;
+                    $type = $_POST['field_type'][$index]; $options = $_POST['field_options'][$index];
+                    $required = isset($_POST['is_required'][$index]) ? 1 : 0; $order = $index + 1;
                     $stmt_insert_field->bind_param("isssii", $form_id, $label, $type, $options, $required, $order);
                     $stmt_insert_field->execute();
                 }
@@ -86,104 +49,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt_insert_field->close();
         }
         $conn->commit();
-        header("Location: manage_forms.php?status=success");
+        header("Location: admin_panel.php?load=manage_forms.php");
         exit;
     } catch (mysqli_sql_exception $exception) {
         $conn->rollback();
-        header("Location: manage_forms.php?status=error&msg=" . urlencode($exception->getMessage()));
-        exit;
+        die("Error: " . $exception->getMessage());
     }
 }
-$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title><?php echo $page_title; ?></title>
+    <link rel="stylesheet" href="css/admin_style.css"> 
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; }
-        .admin-container { max-width: 900px; margin: 20px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        h1, h2 { color: #333; }
-        .form-section { border: 1px solid #ddd; padding: 20px; border-radius: 5px; margin-bottom: 20px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input[type="text"], select, textarea { width:100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        .save-btn { display: inline-block; padding: 12px 25px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px; border: none; font-size: 16px; cursor: pointer; }
-        #fields-container { border: 1px solid #ddd; border-radius: 5px; min-height: 100px; padding: 10px; }
-        .field-block { background-color: #f9f9f9; border: 1px solid #ccc; border-radius: 4px; padding: 15px; margin-bottom: 10px; position: relative; }
-        .field-block-header { cursor: move; padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid #eee; }
-        .field-row { display: flex; gap: 15px; align-items: flex-end; margin-bottom: 10px; }
-        .field-row > div { flex-grow: 1; }
-        .remove-field-btn { position: absolute; top: 10px; right: 10px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-weight: bold; }
-        .add-field-btn { margin-top: 10px; padding: 10px 15px; background-color: #007bff; color: white; border: none; cursor: pointer; border-radius: 4px; }
-        .field-placeholder { background: #eef7ff; border: 2px dashed #007bff; height: 100px; margin-bottom: 10px; }
-        /* Add these new styles for the tag input */
-.tag-input-container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 5px;
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-.tag {
-    display: inline-flex;
-    align-items: center;
-    background-color: #007bff;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 0.9em;
-}
-.tag-remove-btn {
-    margin-left: 8px;
-    cursor: pointer;
-    font-weight: bold;
-}
-.tag-input {
-    flex-grow: 1;
-    border: none;
-    outline: none;
-    padding: 5px;
-    font-size: 1em;
-}
-    </style>
 </head>
-<body>
-    <div class="admin-container">
-        <?php include 'admin_nav.php'; ?>
+<body style="background-color: #f8f9fa;">
+
+    <div class="card form-container" style="max-width: 900px; margin: 30px auto;">
+        <a href="admin_panel.php?load=manage_forms.php" class="action-button" style="margin-bottom: 20px;">&larr; Back to Forms List</a>
+        
         <h1><?php echo $page_title; ?></h1>
-        <form method="post">
+        
+        <form id="formBuilder" method="post" action="create_edit_form.php?id=<?php echo $form_data['id'] ?? ''; ?>">
             <input type="hidden" name="form_id" value="<?php echo htmlspecialchars($form_data['id'] ?? ''); ?>">
+            
             <div class="form-section">
                 <h2>Form Details</h2>
                 <div class="form-group">
                     <label for="event_id">Associated Event (Optional)</label>
-                    <select id="event_id" name="event_id" onchange="updateFormTitle(this)">
+                    <select id="event_id" name="event_id">
                         <option value="" data-title="">-- None --</option>
                         <?php foreach ($events_list as $event): ?>
-                            <option value="<?php echo $event['id']; ?>" 
-                                    data-title="<?php echo htmlspecialchars($event['title']); ?>"
-                                    <?php if (($form_data['event_id'] ?? null) == $event['id']) echo 'selected'; ?>>
+                            <option value="<?php echo $event['id']; ?>" data-title="<?php echo htmlspecialchars($event['title']); ?>" <?php if (($form_data['event_id'] ?? null) == $event['id']) echo 'selected'; ?>>
                                 <?php echo htmlspecialchars($event['title']); ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="title">Form Title</label>
-                    <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($form_data['title'] ?? ''); ?>" required>
-                </div>
-                <div class="form-group">
-                    <label for="form_slug">Form Slug (Unique Identifier)</label>
-                    <input type="text" id="form_slug" name="form_slug" value="<?php echo htmlspecialchars($form_data['form_slug'] ?? ''); ?>" required placeholder="e.g., connect-card">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="title">Form Title</label>
+                        <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($form_data['title'] ?? ''); ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form_slug">Form Slug (Unique ID)</label>
+                        <input type="text" id="form_slug" name="form_slug" value="<?php echo htmlspecialchars($form_data['form_slug'] ?? ''); ?>" required placeholder="e.g., connect-card">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="status">Status</label>
@@ -193,173 +108,115 @@ $conn->close();
                     </select>
                 </div>
             </div>
+
             <div class="form-section">
                 <h2>Form Fields</h2>
                 <div id="fields-container">
                     <?php if (!empty($form_fields)): foreach ($form_fields as $index => $field): ?>
-                        <div class="field-block">
-                            <div class="field-block-header"><strong><?php echo htmlspecialchars(ucfirst($field['field_type'])); ?></strong> (Drag to reorder)</div>
-                            <button type="button" class="remove-field-btn">×</button>
-                            <div class="field-row">
-                                <div><label>Label</label><input type="text" name="field_label[]" value="<?php echo htmlspecialchars($field['field_label']); ?>" required></div>
-                                <div><label>Type</label>
-                                    <select name="field_type[]" class="field-type-select">
-                                        <option value="text" <?php if($field['field_type'] == 'text') echo 'selected'; ?>>Text</option>
-                                        <option value="email" <?php if($field['field_type'] == 'email') echo 'selected'; ?>>Email</option>
-                                        <option value="tel" <?php if($field['field_type'] == 'tel') echo 'selected'; ?>>Phone</option>
-                                        <option value="date" <?php if($field['field_type'] == 'date') echo 'selected'; ?>>Date</option>
-                                        <option value="textarea" <?php if($field['field_type'] == 'textarea') echo 'selected'; ?>>Text Area</option>
-                                        <option value="select" <?php if($field['field_type'] == 'select') echo 'selected'; ?>>Dropdown Select</option>
-                                        <option value="checkbox" <?php if($field['field_type'] == 'checkbox') echo 'selected'; ?>>Checkboxes</option>
-                                        <option value="radio" <?php if($field['field_type'] == 'radio') echo 'selected'; ?>>Radio Buttons</option>
-                                    </select>
-                                </div>
-                                <div><label style="visibility:hidden;">Required</label><label><input type="checkbox" name="is_required[<?php echo $index; ?>]" value="1" <?php if ($field['is_required']) echo 'checked'; ?>> Required</label></div>
-                            </div>
-                            <div class="field-row options-container" style="<?php if(!in_array($field['field_type'], ['select','checkbox','radio'])) echo 'display:none;'; ?>">
-                                <div style="width:100%">
-    <label>Options</label>
-    <div class="tag-input-container">
-        <input type="text" class="tag-input" placeholder="Type an option and press Enter">
-        <input type="hidden" class="hidden-options-input" name="field_options[]" value="<?php echo htmlspecialchars($field['field_options']); ?>">
-    </div>
-</div>
+                    <div class="field-block">
+                        <div class="field-block-header"><strong><?php echo htmlspecialchars(ucfirst($field['field_type'])); ?></strong> (Drag to reorder)</div>
+                        <button type="button" class="remove-field-btn">&times;</button>
+                        <div class="form-group">
+                            <label>Label</label>
+                            <input type="text" name="field_label[]" value="<?php echo htmlspecialchars($field['field_label']); ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Type</label>
+                            <select name="field_type[]" class="field-type-select">
+                                <option value="text" <?php if($field['field_type'] == 'text') echo 'selected'; ?>>Text</option>
+                                <option value="email" <?php if($field['field_type'] == 'email') echo 'selected'; ?>>Email</option>
+                                <option value="tel" <?php if($field['field_type'] == 'tel') echo 'selected'; ?>>Phone</option>
+                                <option value="date" <?php if($field['field_type'] == 'date') echo 'selected'; ?>>Date</option>
+                                <option value="textarea" <?php if($field['field_type'] == 'textarea') echo 'selected'; ?>>Text Area</option>
+                                <option value="select" <?php if($field['field_type'] == 'select') echo 'selected'; ?>>Dropdown</option>
+                                <option value="checkbox" <?php if($field['field_type'] == 'checkbox') echo 'selected'; ?>>Checkboxes</option>
+                                <option value="radio" <?php if($field['field_type'] == 'radio') echo 'selected'; ?>>Radio Buttons</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><input type="checkbox" name="is_required[<?php echo $index; ?>]" value="1" <?php if ($field['is_required']) echo 'checked'; ?>> Required</label>
+                        </div>
+                        <div class="form-group options-container" style="<?php if(!in_array($field['field_type'], ['select','checkbox','radio'])) echo 'display:none;'; ?>">
+                            <label>Options</label>
+                            <div class="tag-input-container">
+                                <input type="text" class="tag-input" placeholder="Type an option and press Enter">
+                                <input type="hidden" class="hidden-options-input" name="field_options[]" value="<?php echo htmlspecialchars($field['field_options']); ?>">
                             </div>
                         </div>
+                    </div>
                     <?php endforeach; endif; ?>
                 </div>
-                <button type="button" class="add-field-btn" id="add-field-btn">+ Add New Field</button>
+                <button type="button" class="action-button add-field-btn" id="add-field-btn">+ Add New Field</button>
             </div>
-            <button type="submit" class="save-btn">Save Form</button>
+            <button type="submit" class="action-button" style="font-size: 16px; width: 100%;">Save Form</button>
         </form>
     </div>
 
     <template id="field-template">
         <div class="field-block">
             <div class="field-block-header"><strong>Text</strong> (Drag to reorder)</div>
-            <button type="button" class="remove-field-btn">×</button>
-            <div class="field-row">
-                <div><label>Label</label><input type="text" name="field_label[]" required></div>
-                <div><label>Type</label>
-                    <select name="field_type[]" class="field-type-select">
-                        <option value="text" selected>Text</option><option value="email">Email</option><option value="tel">Phone</option><option value="date">Date</option><option value="textarea">Text Area</option><option value="select">Dropdown Select</option><option value="checkbox">Checkboxes</option><option value="radio">Radio Buttons</option>
-                    </select>
-                </div>
-                <div><label style="visibility:hidden;">Required</label><label><input type="checkbox" class="is-required-checkbox" value="1"> Required</label></div>
+            <button type="button" class="remove-field-btn">&times;</button>
+            <div class="form-group">
+                <label>Label</label>
+                <input type="text" name="field_label[]" required>
             </div>
-            <div class="field-row options-container" style="display:none;">
-                <div style="width:100%">
-    <label>Options</label>
-    <div class="tag-input-container">
-        <input type="text" class="tag-input" placeholder="Type an option and press Enter">
-        <input type="hidden" class="hidden-options-input" name="field_options[]" value="">
-    </div>
-</div>
+            <div class="form-group">
+                <label>Type</label>
+                <select name="field_type[]" class="field-type-select">
+                    <option value="text" selected>Text</option>
+                    <option value="email">Email</option>
+                    <option value="tel">Phone</option>
+                    <option value="date">Date</option>
+                    <option value="textarea">Text Area</option>
+                    <option value="select">Dropdown</option>
+                    <option value="checkbox">Checkboxes</option>
+                    <option value="radio">Radio Buttons</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label><input type="checkbox" class="is-required-checkbox" value="1"> Required</label>
+            </div>
+            <div class="form-group options-container" style="display:none;">
+                <label>Options</label>
+                <div class="tag-input-container">
+                    <input type="text" class="tag-input" placeholder="Type an option and press Enter">
+                    <input type="hidden" class="hidden-options-input" name="field_options[]" value="">
+                </div>
             </div>
         </div>
     </template>
-
-    <script>
-$(function() {
-    // --- START: Tag Input Logic ---
     
-    function createTag(text, container) {
-        const tag = $('<span class="tag"></span>').text(text);
-        const removeBtn = $('<span class="tag-remove-btn">&times;</span>');
-        tag.append(removeBtn);
-        container.before(tag);
-    }
+    <script>
+    // THE $(function() { ... }); WRAPPER HAS BEEN REMOVED TO MAKE EXECUTION MORE DIRECT
 
-    function updateHiddenInput(container) {
-        const tags = container.parent().find('.tag');
-        const hiddenInput = container.parent().find('.hidden-options-input');
-        const tagValues = $.map(tags, (tag) => $(tag).clone().children().remove().end().text().trim());
-        hiddenInput.val(tagValues.join(','));
-    }
+    $(document).on('change', '#event_id', function() {
+        const selectedOption = $(this).find('option:selected');
+        const eventTitle = selectedOption.data('title');
+        const formTitleInput = $('#title');
+        const formSlugInput = $('#form_slug');
 
-    // Initialize tags for existing fields on page load
-    $('.tag-input-container').each(function() {
-        const container = $(this);
-        const hiddenInput = container.find('.hidden-options-input');
-        const initialValues = hiddenInput.val().split(',').filter(val => val.trim() !== '');
-        initialValues.forEach(val => createTag(val.trim(), container.find('.tag-input')));
-    });
-
-    // Event listener for creating tags
-    $(document).on('keydown', '.tag-input', function(e) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            const input = $(this);
-            const value = input.val().trim();
-            if (value) {
-                createTag(value, input);
-                updateHiddenInput(input.parent());
-                input.val('');
-            }
+        if (eventTitle) {
+            formTitleInput.val(eventTitle); 
+            const slug = eventTitle.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+            formSlugInput.val(slug);
+        } else {
+            formTitleInput.val('');
+            formSlugInput.val('');
         }
     });
 
-    // Event listener for removing tags
-    $(document).on('click', '.tag-remove-btn', function() {
-        const tag = $(this).parent();
-        const container = tag.parent();
-        tag.remove();
-        updateHiddenInput(container);
-    });
-
-    // --- END: Tag Input Logic ---
-
-
-    // --- Your existing Form Builder Logic ---
-    let fieldIndex = <?php echo count($form_fields); ?>;
-    const fieldsContainer = $('#fields-container');
-
-    function toggleOptions(selectElement) {
-        const $fieldBlock = $(selectElement).closest('.field-block');
-        const $optionsContainer = $fieldBlock.find('.options-container');
-        const showOptions = ['select', 'checkbox', 'radio'].includes($(selectElement).val());
-        $optionsContainer.toggle(showOptions);
-        $fieldBlock.find('.field-block-header strong').text($(selectElement).find('option:selected').text());
-    }
-
-    $('#add-field-btn').on('click', function() {
-        const template = $('#field-template')[0];
-        const clone = template.content.cloneNode(true);
-        const $clone = $(clone);
-        $clone.find('.is-required-checkbox').attr('name', `is_required[${fieldIndex}]`).removeClass('is-required-checkbox');
-        fieldsContainer.append($clone);
-        fieldIndex++;
-    });
-
-    fieldsContainer.on('click', '.remove-field-btn', function() {
-        $(this).closest('.field-block').remove();
-    });
-
-    fieldsContainer.on('change', '.field-type-select', function() {
-        toggleOptions(this);
-    });
-
-    fieldsContainer.sortable({
-        handle: ".field-block-header",
-        placeholder: "field-placeholder",
-        forcePlaceholderSize: true
-    });
-});
-
-// Your existing function to update the form title
-function updateFormTitle(selectElement) {
-    const selectedOption = selectElement.options[selectElement.selectedIndex];
-    const eventTitle = selectedOption.dataset.title;
-    const formTitleInput = document.getElementById('title');
-    const formSlugInput = document.getElementById('form_slug');
-    if (eventTitle) {
-        formTitleInput.value = eventTitle + " Registration";
-        formSlugInput.value = eventTitle.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') + "-registration";
-    } else {
-        formTitleInput.value = '';
-        formSlugInput.value = '';
-    }
-}
-</script>
+    // The rest of the jQuery logic for the builder
+    function createTag(text, container) { const tag = $('<span class="tag"></span>').text(text); const removeBtn = $('<span class="tag-remove-btn">&times;</span>'); tag.append(removeBtn); container.before(tag); }
+    function updateHiddenInput(container) { const tags = container.parent().find('.tag'); const hiddenInput = container.parent().find('.hidden-options-input'); const tagValues = $.map(tags, (tag) => $(tag).clone().children().remove().end().text().trim()); hiddenInput.val(tagValues.join(',')); }
+    $('.tag-input-container').each(function() { const container = $(this); const hiddenInput = container.find('.hidden-options-input'); const initialValues = hiddenInput.val().split(',').filter(val => val.trim() !== ''); initialValues.forEach(val => createTag(val.trim(), container.find('.tag-input'))); });
+    $(document).on('keydown', '.tag-input', function(e) { if (e.key === 'Enter') { e.preventDefault(); const input = $(this); const value = input.val().trim(); if (value) { createTag(value, input); updateHiddenInput(input.parent()); input.val(''); } } });
+    $(document).on('click', '.tag-remove-btn', function() { const tag = $(this).parent(); const container = tag.parent(); tag.remove(); updateHiddenInput(container); });
+    let fieldIndex = <?php echo count($form_fields); ?>; const fieldsContainer = $('#fields-container');
+    function toggleOptions(selectElement) { const $fieldBlock = $(selectElement).closest('.field-block'); const $optionsContainer = $fieldBlock.find('.options-container'); const showOptions = ['select', 'checkbox', 'radio'].includes($(selectElement).val()); $optionsContainer.toggle(showOptions); $fieldBlock.find('.field-block-header strong').text($(selectElement).find('option:selected').text()); }
+    $('#add-field-btn').on('click', function() { const template = $('#field-template')[0]; const clone = template.content.cloneNode(true); const $clone = $(clone); $clone.find('.is-required-checkbox').attr('name', `is_required[${fieldIndex}]`).removeClass('is-required-checkbox'); fieldsContainer.append($clone); fieldIndex++; });
+    fieldsContainer.on('click', '.remove-field-btn', function() { $(this).closest('.field-block').remove(); });
+    fieldsContainer.on('change', '.field-type-select', function() { toggleOptions(this); });
+    fieldsContainer.sortable({ handle: ".field-block-header", placeholder: "field-placeholder", forcePlaceholderSize: true });
+    </script>
 </body>
 </html>

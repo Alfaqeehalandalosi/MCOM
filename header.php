@@ -1,4 +1,4 @@
-<header> class="site-header" id="site-header">
+<header class="site-header" id="site-header">
         <div class="container header-content">
             <a href="index.php" class="header-logo"><img src="images/logo-white.png" alt="Logo"></a>
             <nav class="navigation">
