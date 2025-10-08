@@ -1,7 +1,9 @@
 // js/component-loader.js
 (function() {
+    // Determine the current page to highlight the active navigation link
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
+    // --- Reusable Header HTML Component ---
     const headerHTML = `
         <header class="site-header" id="site-header">
             <div class="container header-content">
@@ -24,184 +26,65 @@
         </header>
     `;
 
+    // --- Reusable Footer HTML Component ---
     const footerHTML = `
-        <style>
-            .x-colophon {
-                font-family: "Open Sans", sans-serif;
-                background-color: #000;
-                color: #fff;
-            }
-            .x-colophon a {
-                text-decoration: none;
-                color: #fff;
-            }
-            .x-colophon a:hover {
-                color: #bbb;
-            }
-            .x-bar {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                padding: 0 2.5em;
-            }
-            .x-bar-content {
-                width: 100%;
-                max-width: 1200px;
-                display: flex;
-                align-items: center;
-            }
-            .x-bar[data-x-bar*='"height":"150px"'] { padding: 50px 2.5em; }
-            .x-bar[data-x-bar*='"height":"65px"'] { height: 65px; }
-            .x-bar[data-x-bar*='"height":"40px"'] { height: 40px; }
-
-            .x-bar-content-top-1, .x-bar-content-top-2 {
-                display: flex;
-                width: 100%;
-                justify-content: center;
-            }
-            .x-bar-content-top-2 {
-                border-top: 1px solid #333;
-                margin-top: 2em;
-                padding-top: 2em;
-            }
-            .x-row-inner {
-                display: flex;
-                justify-content: space-between;
-                width: 100%;
-                gap: 2em;
-            }
-            .x-col {
-                display: flex;
-                flex-direction: column;
-                gap: 0.5em;
-            }
-            .x-text, .x-anchor-menu-item {
-                font-size: 11px;
-                letter-spacing: 0.1em;
-                line-height: 1.6;
-                text-transform: uppercase;
-                font-weight: 400;
-            }
-            .x-text-content-text-primary {
-                margin: 0;
-            }
-            .x-text.e508-e5, .x-text.e508-e8, .x-menu .menu-item:first-child .x-anchor-text-primary {
-                font-weight: 700;
-            }
-            .x-menu { list-style: none; margin: 0; padding: 0; }
-            .x-menu li { padding-bottom: 0.5em; }
-            .x-anchor-sub-indicator { display: none; }
-
-            .x-bar-middle .x-bar-content { position: relative; }
-            .x-bar-middle .x-line { flex: 1; border: 0; border-top: 1px solid #333; }
-            .x-bar-middle .x-image { margin: 0 2em; }
-            .x-bar-middle .x-image img {
-                height: 50px; /* Large logo */
-                border-radius: 50%;
-                border: 1px solid #fff;
-            }
-            .x-bar-middle::before {
-                content: '';
-                position: absolute;
-                bottom: 50%;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 1px;
-                height: 80px; /* Vertical line height */
-                background: #333;
-            }
-
-            .x-bar-bottom .x-bar-content {
-                justify-content: space-between;
-            }
-            .x-bar-bottom-left, .x-bar-bottom-right {
-                display: flex;
-                align-items: center;
-                gap: 1.5em;
-                font-size: 10px;
-            }
-            .x-bar-bottom-right a {
-                letter-spacing: 0.2em;
-            }
-            .x-to-top {
-                width: 30px; height: 30px; border-radius: 50%; border: 1px solid #888;
-                display: flex; align-items: center; justify-content: center;
-            }
-            @media (max-width: 979px) {
-                .x-row-inner { flex-direction: column; text-align: center; align-items: center; gap: 2em; }
-                .x-col { align-items: center; }
-                .x-bar[data-x-bar*='"height":"150px"'] { height: auto !important; }
-                .x-bar-middle::before { display: none; }
-            }
-            @media (max-width: 767px) {
-                .x-bar-bottom .x-bar-content { flex-direction: column-reverse; gap: 1.5em; height: auto !important; padding: 2em 0; }
-            }
-        </style>
-        
         <footer class="x-colophon" role="contentinfo">
-            <div class="x-bar x-bar-footer" data-x-bar='{"id":"e508-e1","region":"footer","height":"150px"}'>
-                <div class="x-bar-content x-bar-top-content">
-                    <div class="x-container x-bar-content-top-1">
-                        <div class="x-row-inner">
-                            <div class="x-col">
-                                <a href="#" class="x-text e508-e5"><div class="x-text-content"><p class="x-text-content-text-primary">Manifestation Outreach</p></div></a>
-                                <a href="#" class="x-text"><div class="x-text-content"><p class="x-text-content-text-primary">OFF AKINJAGUNLA, AGIODO-OJOJO ROAD<br>ONDO TOWN, NIGERIA</p></div></a>
-                            </div>
-                            <div class="x-col">
-                                <div class="x-text e508-e8"><p class="x-text-content-text-primary">Sundays at 8 AM, 9:30 AM, and 11 AM</p></div>
-                                <a href="tel:2345554603500" class="x-text"><div class="x-text-content"><p class="x-text-content-text-primary">(234) 555-460-3500</p></div></a>
-                                <a href="mailto:info@manifestationoutreach.com" class="x-text"><div class="x-text-content"><p class="x-text-content-text-primary">info@manifestationoutreach.com</p></div></a>
-                            </div>
+            <div class="x-bar-top-content">
+                <div class="container">
+                    <div class="footer-row-inner">
+                        <div class="footer-col">
+                            <h4>Manifestation Outreach</h4>
+                            <p>OFF AKINJAGUNLA, AGIODO-OJOJO ROAD, IMOLE OLORUN TAN, OKE-AYO STREET, ONDO TOWN, ONDO STATE, NIGERIA</p>
                         </div>
-                    </div>
-                    <div class="x-container x-bar-content-top-2">
-                        <div class="x-row-inner">
-                            <div class="x-col">
-                                <ul class="x-menu">
-                                    <li class="menu-item"><a class="x-anchor x-anchor-menu-item" href="about.html"><span class="x-anchor-text-primary">New Here?</span></a></li>
-                                    <li class="menu-item"><a class="x-anchor x-anchor-menu-item" href="connect.html"><span class="x-anchor-text-primary">Kids</span></a></li>
-                                    <li class="menu-item"><a class="x-anchor x-anchor-menu-item" href="connect.html"><span class="x-anchor-text-primary">Students</span></a></li>
-                                    <li class="menu-item"><a class="x-anchor x-anchor-menu-item" href="#"><span class="x-anchor-text-primary">Jobs</span></a></li>
-                                </ul>
-                            </div>
-                            <div class="x-col">
-                                <ul class="x-menu">
-                                    <li class="menu-item"><a class="x-anchor x-anchor-menu-item" href="nextsteps.html"><span class="x-anchor-text-primary">Growth Track</span></a></li>
-                                    <li class="menu-item"><a class="x-anchor x-anchor-menu-item" href="nextsteps.html"><span class="x-anchor-text-primary">Small Groups</span></a></li>
-                                    <li class="menu-item"><a class="x-anchor x-anchor-menu-item" href="nextsteps.html"><span class="x-anchor-text-primary">Discipleship School</span></a></li>
-                                </ul>
-                            </div>
-                            <div class="x-col">
-                                <ul class="x-menu">
-                                    <li class="menu-item"><a class="x-anchor x-anchor-menu-item" href="sermons.html"><span class="x-anchor-text-primary">Watch</span></a></li>
-                                    <li class="menu-item"><a class="x-anchor x-anchor-menu-item" href="sermons.html"><span class="x-anchor-text-primary">Sermons</span></a></li>
-                                    <li class="menu-item"><a class="x-anchor x-anchor-menu-item" href="events.html"><span class="x-anchor-text-primary">Calendar</span></a></li>
-                                    <li class="menu-item"><a class="x-anchor x-anchor-menu-item" href="#"><span class="x-anchor-text-primary">Church Portal Login</span></a></li>
-                                </ul>
-                            </div>
+                        <div class="footer-col">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a href="index.html">Church Home</a></li>
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="events.html">All Events</a></li>
+                                <li><a href="sermons.html">Sermons Archive</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Next Steps</h4>
+                            <ul>
+                                <li><a href="nextsteps.html">Growth Track</a></li>
+                                <li><a href="nextsteps.html">Small Groups</a></li>
+                                <li><a href="nextsteps.html">Discipleship School</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Connect With Us</h4>
+                            <ul>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Jobs</a></li>
+                                <li><a href="#">Newsletter</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="x-bar x-bar-footer x-bar-middle" data-x-bar='{"id":"e508-e22","region":"footer","height":"65px"}'>
-                <div class="x-bar-content">
-                    <hr class="x-line">
-                    <a class="x-image" href="index.html"><img src="images/logo-white.png" alt="Logo"></a>
-                    <hr class="x-line">
+            <div class="x-bar-middle-logo">
+                <div class="container">
+                    <div class="footer-bar-content">
+                        <hr class="x-line">
+                        <img src="images/logo-white.png" alt="Footer Logo">
+                        <hr class="x-line">
+                    </div>
                 </div>
             </div>
-            <div class="x-bar x-bar-footer x-bar-bottom" data-x-bar='{"id":"e508-e27","region":"footer","height":"40px"}'>
-                <div class="x-bar-content">
-                    <div class="x-bar-bottom-left">
-                        <a href="#" class="x-text"><p class="x-text-content-text-primary">Made with love by REACHRIGHT</p></a>
-                    </div>
-                    <div class="x-bar-bottom-right">
-                        <a href="#" class="x-text">FACEBOOK</a>
-                        <a href="#" class="x-text">INSTAGRAM</a>
-                        <a href="#" class="x-text">YOUTUBE</a>
-                        <a href="#" class="x-text">NEWSLETTER</a>
-                        <a href="#" class="x-to-top">↑</a>
+            <div class="x-bar-bottom-bar">
+                <div class="container">
+                    <div class="footer-bottom-container">
+                        <div class="footer-copyright">
+                            <p>&copy; ${new Date().getFullYear()} Manifestation. All Rights Reserved</p>
+                        </div>
+                        <div class="footer-social-links">
+                            <a href="#">FACEBOOK</a>
+                            <a href="#">INSTAGRAM</a>
+                            <a href="#">YOUTUBE</a>
+                            <a href="#">NEWSLETTER</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -231,7 +114,10 @@
             }
         };
         
+        // Add event listener
         window.addEventListener('scroll', handleScroll, { passive: true });
+        
+        // Check scroll position on page load in case the page is reloaded mid-scroll
         handleScroll();
     }
 })();
