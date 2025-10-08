@@ -268,7 +268,6 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD:impact.html
     <header class="site-header" id="site-header">
         <div class="container header-content">
             <a href="index.html" class="header-logo"><img src="images/logo-white.png" alt="Logo"></a>
@@ -288,9 +287,6 @@
             </div>
         </div>
     </header>
-=======
-    <?php include 'header.php'; ?>
->>>>>>> c75c0b7f9c1042bfc91e63391b95b8b64a9a2f7f:impact.php
 
     <main>
         <section class="section-hero">
@@ -394,7 +390,6 @@
 
     </main>
     
-<<<<<<< HEAD:impact.html
     <!-- START: RECREATED FOOTER -->
     <footer class="x-colophon" role="contentinfo">
         <!-- Top Content Bar -->
@@ -430,30 +425,6 @@
                              <li><a href="#">Newsletter</a></li>
                          </ul>
                     </div>
-=======
-    <footer class="site-footer">
-        <div class="footer-main">
-            <div class="container footer-grid">
-                <div class="footer-col">
-                    <h4 class="footer-widget-title">About our Church</h4>
-                    <img src="images/logo-white.png" alt="Logo" style="max-width: 200px; margin-bottom: 20px;">
-                    <p>OFF AKINJAGUNLA, AGIODO-OJOJO ROAD, IMOLE OLORUN TAN, OKE-AYO STREET, ONDO TOWN, ONDO STATE, NIGERIA</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Blogroll</h4>
-                    <ul>
-                        <li><a href="index.php">Church Home</a></li>
-                        <li><a href="about.php">About Us</a></li>
-                        <li><a href="events.php">All Events</a></li>
-                        <li><a href="sermons.php">Sermons Archive</a></li>
-                        <li><a href="blog-masonry.php">Our Blog</a></li>
-                    </ul>
-                </div>
-                 <div class="footer-col">
-                    <h4>Our Church on Twitter</h4>
-                    <p>Follow us on Twitter for the latest updates and inspiration.</p>
-                    <a href="#">@YourTwitterHandle</a>
->>>>>>> c75c0b7f9c1042bfc91e63391b95b8b64a9a2f7f:impact.php
                 </div>
             </div>
         </div>
@@ -514,9 +485,5 @@
             observer.observe(el);
         });
     </script>
-<<<<<<< HEAD:impact.html
-=======
-    
->>>>>>> c75c0b7f9c1042bfc91e63391b95b8b64a9a2f7f:impact.php
 </body>
 </html>
