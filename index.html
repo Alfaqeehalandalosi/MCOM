@@ -10,12 +10,110 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 
-    <!-- This single CSS file will style the entire site -->
     <link rel="stylesheet" href="css/style.css">
+    
+   <style>
+    @font-face {
+        font-family: 'poynter-new';
+        src: url('https://cedarcrestchurch.com/wp-content/uploads/2025/02/PoynterText-Bold_new.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+    }
+
+    /* --- Custom Font Headlines --- */
+    .welcome-section h2,
+    .coming-up-section h2,
+    .parallax-section h2 {
+        font-family: 'poynter-new', serif;
+        font-size: 3em;
+        line-height: 1.1;
+    }
+
+    .interactive-grid .grid-item h2 {
+        font-family: 'poynter-new', serif;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    }
+
+    .description-pane h4 {
+        font-family: 'poynter-new', serif;
+        font-size: 1.6em;
+        font-weight: 700;
+    }
+
+    /* --- Welcome Section Dark Box --- */
+    .welcome-section .text-pane-dark {
+        background-color: #262626;
+        padding: 40px;
+        border-radius: 5px;
+        color: #FFFFFF;
+    }
+    
+    .welcome-section .text-pane-dark p {
+        color: #FFFFFF;
+    }
+
+    .welcome-section .text-pane-dark p:first-child {
+        color: #8C8C8C; /* Greyish "Welcome" subtitle */
+    }
+
+    .welcome-section .text-pane-dark h2 {
+        color: #FFFFFF;
+    }
+    
+    .welcome-section .text-pane-dark .btn {
+        background-color: #FFFFFF;
+        color: #262626;
+        border: 2px solid #FFFFFF;
+        margin-top: 66px;      /* Adjust this value to move button lower */
+        display: inline-block; /* Makes the margin work */
+    }
+    .welcome-section .text-pane-dark .btn:hover {
+        background-color: transparent;
+        color: #FFFFFF;
+    }
+
+    /* --- Parallax Section Styles --- */
+    .parallax-section {
+    background-image: url('images/join-us-text.png');        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+background-size: 400px;
+background-color: #262626;        padding: 120px 0;
+        position: relative;
+        text-align: center;
+    }
+
+    .parallax-section::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5); 
+    }
+
+    .parallax-section .parallax-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .parallax-section h3,
+    .parallax-section h2 {
+        color: #FFFFFF;
+    }
+
+    .parallax-section .btn {
+        background-color: #FFFFFF;
+        color: #262626;
+        border: 2px solid #FFFFFF;
+    }
+
+    .parallax-section .btn:hover {
+        background-color: transparent;
+        color: #FFFFFF;
+    }
+</style>
 </head>
 <body>
 
-    <!-- Header will be loaded here by the script -->
     <div id="header-container"></div>
 
     <main>
@@ -49,7 +147,7 @@
               <div>
                   <img src="https://cedarcrestchurch.com/wp-content/uploads/2024/11/CedarcrestSunday-18327.jpg" alt="Church Welcome">
               </div>
-              <div>
+              <div class="text-pane-dark">
                   <p>Welcome</p>
                   <h2>we are a Jesus church.</h2>
                   <p>We live this out in our 4 key vision words, Encounter, Disciple, Serve, and Impact. We want our church to encounter the living God, be a place of discipleship, serve the local community and the world creating impact through the name of Jesus Christ.</p>
@@ -139,7 +237,7 @@
             <div class="container">
                 <div class="parallax-content">
                     <h3>Events</h3>
-                    <h2>here's what's happening next at Manifestation city church.</h2>
+                    <h2>here's what's <br> happening next <br> at Manifestation city church.</h2>
                     <a href="events.html" class="btn">Upcoming Events</a>
                 </div>
             </div>
@@ -152,7 +250,6 @@
         </section>
     </main>
 
-    <!-- Footer will be loaded here -->
     <div id="footer-container"></div>
 
     <script src="js/component-loader.js" defer></script>
