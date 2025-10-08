@@ -2,40 +2,58 @@
 require_once 'admin_check.php';
 require_once '../db_connect.php';
 
+// This block handles the background POST request from our JavaScript
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $full_name = $_POST['full_name'];
-    $email = $_POST['email'];
-    $contact_number = $_POST['contact_number'];
+    // Set the header to indicate a JSON response
+    header('Content-Type: application/json');
+
+    $full_name = $_POST['full_name'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $contact_number = $_POST['contact_number'] ?? '';
+
+    // Basic validation
+    if (empty($full_name) || empty($email)) {
+        echo json_encode(['status' => 'error', 'message' => 'Full Name and Email are required.']);
+        exit;
+    }
 
     $stmt = $conn->prepare("INSERT INTO users (full_name, email, contact_number) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $full_name, $email, $contact_number);
     
     if ($stmt->execute()) {
-        header("Location: users.php?status=user_added");
-        exit;
+        // Send a success response back to the JavaScript
+        echo json_encode(['status' => 'success', 'message' => 'User added successfully!']);
     } else {
-        $error_message = "Error: Could not add user. The email might already exist.";
+        // Send an error response
+        echo json_encode(['status' => 'error', 'message' => 'Error: Could not add user. The email might already exist.']);
     }
+    // Stop the script after sending the JSON response
+    exit;
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add New User</title>
-    <style>body { font-family: Arial, sans-serif; background-color: #f4f4f4; }.admin-container { max-width: 700px; margin: 20px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }.form-group { margin-bottom: 15px; }label { display: block; margin-bottom: 5px; font-weight: bold; }input[type="text"], input[type="email"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }button { padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; }</style>
-</head>
-<body>
-    <div class="admin-container">
-        <?php include 'admin_nav.php'; ?>
-        <h1>Add a New User</h1>
-        <?php if (isset($error_message)): ?><p style="color:red;"><?php echo $error_message; ?></p><?php endif; ?>
-        <form method="post">
-            <div class="form-group"><label for="full_name">Full Name</label><input type="text" name="full_name" required></div>
-            <div class="form-group"><label for="email">Email</label><input type="email" name="email" required></div>
-            <div class="form-group"><label for="contact_number">Contact Number</label><input type="text" name="contact_number"></div>
-            <button type="submit">Save User</button>
-        </form>
-    </div>
-</body>
-</html>
+
+<div class="card form-container">
+    <h1>Add a New User</h1>
+
+    <form id="addUserForm" method="post" action="add_user.php">
+        <div class="form-group">
+            <label for="full_name">Full Name</label>
+            <input type="text" id="full_name" name="full_name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="contact_number">Contact Number (Optional)</label>
+            <input type="tel" id="contact_number" name="contact_number">
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="action-button">Save</button>
+            <a href="manage_users.php" class="ajax-link btn-secondary">Cancel</a>
+        </div>
+    </form>
+
+    <div id="form-message" style="margin-top: 20px;"></div>
+</div>

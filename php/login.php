@@ -2,7 +2,7 @@
 session_start();
 // This page is for admins, so we can call the session 'admin_loggedin'
 if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] === true) {
-    header('Location: ../php/admin/dashboard.php'); // Or your main admin page
+    header('Location: ../php/admin/admin_panel.php'); // Or your main admin page
     exit;
 }
 ?>
