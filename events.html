@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html class="no-js">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Manifestation City Church</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+    <style>
+        /* --- EXPANDED COLOR PALETTE & GLOBAL SETTINGS (RESTORED) --- */
+        :root {
+            --accent-teal: #027368;        /* Primary Accent */
+            --primary-dark: #262626;      /* Primary Text / Dark BG */
+            --accent-warm: #BF5A36;       /* Warm Accent / CTA */
+            --text-muted: #8C8C8C;        /* Muted Text / Gray */
+            --border-color: #E0E0E0;      /* Subtle Border / Line */
+            --bg-light: #F8F7F3;          /* Primary Light BG */
+            --text-light: #FFFFFF;        /* Highlight */
+        }
+
+        @font-face {
+            font-family: 'poynter-new';
+            src: url('https://cedarcrestchurch.com/wp-content/uploads/2025/02/PoynterText-Bold_new.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+        
+        body, html {
+            margin: 0; padding: 0; font-family: 'Lato', sans-serif;
+            background-color: var(--bg-light); color: var(--primary-dark);
+            scroll-behavior: smooth;
+        }
+
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        a { text-decoration: none; transition: color 0.3s ease; color: inherit; }
+        
+        /* NOTE: Header and Footer styles are now loaded by component-loader.js, but keeping them here won't cause issues */
+        
+        /* --- MAIN CONTENT --- */
+        main { position: relative; }
+
+        /* --- HERO --- */
+        .hero-section {
+            padding: calc(20vh + 90px) 0 20vh 0; /* Fix for transparent header */
+            text-align: center; position: relative;
+            background-size: cover; background-position: center center;
+        }
+        .hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(38, 38, 38, 0.25); }
+        .hero-content { position: relative; z-index: 2; }
+        .hero-title { font-family: 'poynter-new', serif; font-size: 3.5em; color: var(--text-light); margin: 0; }
+        
+        /* --- EVENT LIST STYLES (RESTORED) --- */
+        .content-section { padding: 10vh 0; background-color: var(--bg-light); }
+        .event-list-container { display: flex; flex-direction: column; gap: 40px; }
+        .event-list-item { display: flex; flex-direction: column; gap: 20px; }
+        .event-list-item:hover .event-title { color: var(--accent-teal); }
+        @media (min-width: 768px) { .event-list-item { flex-direction: row; gap: 30px; align-items: flex-start; } }
+        .event-image-wrap { position: relative; flex-shrink: 0; width: 100%; }
+        @media (min-width: 768px) { .event-image-wrap { width: 320px; } }
+        .event-image { padding-top: 56.25%; background-color: var(--text-muted); border-radius: 3px; background-size: cover; background-position: center; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); }
+        .date-overlay {
+            position: absolute; top: 12px; left: 12px;
+            background-color: rgba(38, 38, 38, 0.6);
+            color: var(--text-light); border-radius: 3px; text-align: center;
+            font-weight: 700; line-height: 1.1; width: 60px; overflow: hidden;
+        }
+        .date-overlay-month { background-color: var(--primary-dark); padding: 4px; font-size: 0.8em; text-transform: uppercase; }
+        .date-overlay-date { padding: 8px 4px; font-size: 1.8em; }
+        .event-text-wrap { flex-grow: 1; }
+        .event-title { font-family: 'Playfair Display', serif; font-size: 1.8em; margin: 0 0 5px 0; font-weight: 900; color: var(--primary-dark); line-height: 1.2; }
+        .event-subtitle { font-family: 'Open Sans', sans-serif; font-size: 1em; color: var(--text-muted); margin: 0 0 15px 0; }
+        .event-summary { font-family: 'Open Sans', sans-serif; font-size: 1em; line-height: 1.7; color: var(--text-muted); margin: 0; }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 2.5em; }
+        }
+    </style>
+</head>
+<body>
+
+  <div id="header-container"></div>
+
+    <main>
+        <section class="hero-section" style="background-image: url('https://cedarcrestchurch.com/wp-content/uploads/2022/07/events-header_1920x1080.jpg');">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <h1 class="hero-title">Upcoming Events</h1>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="event-list-container">
+
+                    <a href="#" class="event-list-item">
+                        <div class="event-image-wrap">
+                            <div class="event-image" style="background-image: url('https://images.subsplash.com/image.jpg?id=8f19b6aa-08c7-4ddb-b013-387c3c5a4016&w=400&h=225');"></div>
+                            <div class="date-overlay">
+                                <div class="date-overlay-month">Sep</div>
+                                <div class="date-overlay-date">28</div>
+                            </div>
+                        </div>
+                        <div class="event-text-wrap">
+                            <h2 class="event-title">Baptism Sunday</h2>
+                            <h3 class="event-subtitle">September 28, 2025 from 8:00am - 12:00pm</h3>
+                            <p class="event-summary">Go public with your faith in Jesus through believer's baptism! Every 4th Sunday of the month.</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="event-list-item">
+                        <div class="event-image-wrap">
+                            <div class="event-image" style="background-image: url('https://images.subsplash.com/image.jpg?id=58b1ab4d-bbe4-4935-8a42-8d86c0823071&w=400&h=225');"></div>
+                            <div class="date-overlay">
+                                <div class="date-overlay-month">Oct</div>
+                                <div class="date-overlay-date">5</div>
+                            </div>
+                        </div>
+                        <div class="event-text-wrap">
+                            <h2 class="event-title">Growth Track</h2>
+                            <h3 class="event-subtitle">October 5, 9:30am - October 19, 2025 10:30am</h3>
+                            <p class="event-summary">Growth Track at our church is an opportunity to help you discover your purpose. With three steps, Growth Track invites you in Step 1 to learn our vision and values, Step 2 to discover your design, and Step 3 to join a serve team.</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="event-list-item">
+                        <div class="event-image-wrap">
+                            <div class="event-image" style="background-image: url('https://images.subsplash.com/image.jpg?id=b20cfadc-6bb3-4db6-8f7a-e8a303c54ace&w=400&h=225');"></div>
+                            <div class="date-overlay">
+                                <div class="date-overlay-month">Oct</div>
+                                <div class="date-overlay-date">17</div>
+                            </div>
+                        </div>
+                        <div class="event-text-wrap">
+                            <h2 class="event-title">Gather Weekend</h2>
+                            <h3 class="event-subtitle">October 17, 6:30pm - October 18, 2025 2:00pm</h3>
+                            <p class="event-summary">The women of our church are gathering! This weekend will be full of worship, prayer, delicious food, and intentional connection! Your admission price includes admission for two days, dessert party, lunch on Saturday, a swag bag, and more.</p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+  <div id="footer-container"></div>
+  
+  <script src="js/component-loader.js" defer></script>
+</body>
+</html>

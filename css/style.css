@@ -161,7 +161,27 @@ main { position: relative; }
     .service-times h2 { font-size: 4.5em; }
     .footer-row-inner { grid-template-columns: 1fr 1fr; }
 }
+/* --- Add these styles to your existing CSS file --- */
 
+/* Targets the 'now you can watch...' heading */
+.coming-up-section h2 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900; /* Bolder font weight */
+    font-size: 2.8em; /* Slightly larger and bolder */
+    letter-spacing: -1px; /* Tighter letter spacing */
+    line-height: 1.1;
+    margin-bottom: 15px; /* Reduced space below */
+}
+
+/* Targets the small 'Watch' heading */
+.coming-up-section .split-section > div:last-child > h3 {
+    font-size: 0.85em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted); /* Muted color like the original */
+    margin-bottom: 5px;
+}
 @media (max-width: 767px) {
     .service-times h2 { font-size: 3em; }
     .hero-content h1 { font-size: 2.5em; }
