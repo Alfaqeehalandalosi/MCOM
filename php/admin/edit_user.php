@@ -5,10 +5,8 @@ require_once '../db_connect.php';
 $user_id = $_GET['id'] ?? 0;
 if (!$user_id) { die("Invalid user ID."); }
 
-// Handle form submission to UPDATE the user
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header('Content-Type: application/json');
-    
     $full_name = $_POST['full_name'] ?? '';
     $email = $_POST['email'] ?? '';
     $contact_number = $_POST['contact_number'] ?? '';
@@ -29,13 +27,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit;
 }
 
-// Fetch the current user data to populate the form
 $stmt_fetch = $conn->prepare("SELECT full_name, email, contact_number FROM users WHERE id = ?");
 $stmt_fetch->bind_param("i", $user_id);
 $stmt_fetch->execute();
 $user = $stmt_fetch->get_result()->fetch_assoc();
 if (!$user) { die("User not found."); }
 ?>
+
+<a href="manage_users.php" class="action-button ajax-link" style="margin-bottom: 20px;">&larr; Back to All Users</a>
 
 <div class="card form-container">
     <h1>Edit User Details</h1>

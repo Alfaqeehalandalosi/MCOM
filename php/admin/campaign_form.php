@@ -19,6 +19,8 @@ if (isset($_GET['id'])) {
 $conn->close();
 ?>
 
+<a href="campaigns.php" class="action-button ajax-link" style="margin-bottom: 20px;">&larr; Back to Campaigns</a>
+
 <div class="card form-container">
     <h1><?php echo $page_title; ?></h1>
 

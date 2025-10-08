@@ -1,20 +1,29 @@
 <?php
 require_once 'admin_check.php';
-require_once '../db_connect.php';
+require_once '../db_connect.php'; // ADD THIS LINE
 
-// --- Data fetching queries ---
+// --- REAL DATA FETCHING (Corrected Version) ---
+
+// Query 1: Get total donation revenue
 $sql_revenue = "SELECT SUM(amount) as total_revenue FROM donations";
 $result_revenue = $conn->query($sql_revenue);
 $revenue_data = $result_revenue->fetch_assoc();
 $total_donation_revenue = $revenue_data['total_revenue'] ?? 0;
+
+// Query 2: Get new users from the last 30 days
 $sql_users = "SELECT COUNT(id) as new_users FROM users WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)";
 $result_users = $conn->query($sql_users);
 $users_data = $result_users->fetch_assoc();
 $new_users_count = $users_data['new_users'] ?? 0;
+
+// Query 3: Get event signups from the last 30 days
 $sql_events = "SELECT COUNT(id) as signups FROM event_attendees WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)";
 $result_events = $conn->query($sql_events);
 $events_data = $result_events->fetch_assoc();
 $monthly_event_signups = $events_data['signups'] ?? 0;
+
+
+// Query 4: Get the 5 most recent activities (donations)
 $recent_activities = [];
 $sql_activity = "
     SELECT d.amount, d.created_at, u.full_name, dc.name as campaign_name 
@@ -32,7 +41,7 @@ if ($result_activity) {
 ?>
 
 <header class="main-header">
-    <h1>Welcome Back, <?php echo htmlspecialchars($_SESSION['admin_name']); ?>!</h1>
+    <h1>Welcome Back, <?php echo htmlspecialchars($_SESSION['admin_name'] ?? 'Admin'); ?>!</h1>
     <p>Here's what's happening with your ministry today.</p>
 </header>
 

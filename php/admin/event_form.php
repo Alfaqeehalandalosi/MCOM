@@ -17,6 +17,8 @@ if (isset($_GET['id'])) {
 $conn->close();
 ?>
 
+<a href="manage_events.php" class="action-button ajax-link" style="margin-bottom: 20px;">&larr; Back to Events List</a>
+
 <div class="card form-container">
     <h1><?php echo $page_title; ?></h1>
 
@@ -46,7 +48,6 @@ $conn->close();
             <button type="submit" class="action-button"><?php echo !empty($event['id']) ? 'Update' : 'Create'; ?> Event</button>
             <a href="manage_events.php" class="ajax-link btn-secondary">Cancel</a>
             
-            <!-- THIS IS THE NEW BUTTON - It only shows up when editing -->
             <?php if (!empty($event['id'])): ?>
                 <a href="event_action.php?action=cancel&id=<?php echo $event['id']; ?>" 
                    class="ajax-link btn-danger" 

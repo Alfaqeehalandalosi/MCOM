@@ -2,16 +2,12 @@
 require_once 'admin_check.php';
 require_once '../db_connect.php';
 
-// This block handles the background POST request from our JavaScript
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Set the header to indicate a JSON response
     header('Content-Type: application/json');
-
     $full_name = $_POST['full_name'] ?? '';
     $email = $_POST['email'] ?? '';
     $contact_number = $_POST['contact_number'] ?? '';
 
-    // Basic validation
     if (empty($full_name) || empty($email)) {
         echo json_encode(['status' => 'error', 'message' => 'Full Name and Email are required.']);
         exit;
@@ -21,16 +17,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sss", $full_name, $email, $contact_number);
     
     if ($stmt->execute()) {
-        // Send a success response back to the JavaScript
         echo json_encode(['status' => 'success', 'message' => 'User added successfully!']);
     } else {
-        // Send an error response
         echo json_encode(['status' => 'error', 'message' => 'Error: Could not add user. The email might already exist.']);
     }
-    // Stop the script after sending the JSON response
     exit;
 }
 ?>
+
+<a href="manage_users.php" class="action-button ajax-link" style="margin-bottom: 20px;">&larr; Back to All Users</a>
 
 <div class="card form-container">
     <h1>Add a New User</h1>

@@ -49,7 +49,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt_insert_field->close();
         }
         $conn->commit();
-        // Redirect back to the admin panel, instructing it to load the forms list
         header("Location: admin_panel.php?load=manage_forms.php");
         exit;
     } catch (mysqli_sql_exception $exception) {
@@ -72,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="card form-container" style="max-width: 900px; margin: 30px auto;">
         <a href="admin_panel.php?load=manage_forms.php" class="action-button" style="margin-bottom: 20px;">&larr; Back to Forms List</a>
+        
         <h1><?php echo $page_title; ?></h1>
         
         <form id="formBuilder" method="post" action="create_edit_form.php?id=<?php echo $form_data['id'] ?? ''; ?>">
@@ -187,37 +187,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </template>
     
     <script>
-    $(function() {
-        // Event handler for auto-filling title/slug
-        $(document).on('change', '#event_id', function() {
-            const selectedOption = $(this).find('option:selected');
-            const eventTitle = selectedOption.data('title');
-            const formTitleInput = $('#title');
-            const formSlugInput = $('#form_slug');
+    // THE $(function() { ... }); WRAPPER HAS BEEN REMOVED TO MAKE EXECUTION MORE DIRECT
 
-            if (eventTitle) {
-                formTitleInput.val(eventTitle); 
-                const slug = eventTitle.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-                formSlugInput.val(slug);
-            } else {
-                formTitleInput.val('');
-                formSlugInput.val('');
-            }
-        });
+    $(document).on('change', '#event_id', function() {
+        const selectedOption = $(this).find('option:selected');
+        const eventTitle = selectedOption.data('title');
+        const formTitleInput = $('#title');
+        const formSlugInput = $('#form_slug');
 
-        // The rest of the jQuery logic for the builder
-        function createTag(text, container) { const tag = $('<span class="tag"></span>').text(text); const removeBtn = $('<span class="tag-remove-btn">&times;</span>'); tag.append(removeBtn); container.before(tag); }
-        function updateHiddenInput(container) { const tags = container.parent().find('.tag'); const hiddenInput = container.parent().find('.hidden-options-input'); const tagValues = $.map(tags, (tag) => $(tag).clone().children().remove().end().text().trim()); hiddenInput.val(tagValues.join(',')); }
-        $('.tag-input-container').each(function() { const container = $(this); const hiddenInput = container.find('.hidden-options-input'); const initialValues = hiddenInput.val().split(',').filter(val => val.trim() !== ''); initialValues.forEach(val => createTag(val.trim(), container.find('.tag-input'))); });
-        $(document).on('keydown', '.tag-input', function(e) { if (e.key === 'Enter') { e.preventDefault(); const input = $(this); const value = input.val().trim(); if (value) { createTag(value, input); updateHiddenInput(input.parent()); input.val(''); } } });
-        $(document).on('click', '.tag-remove-btn', function() { const tag = $(this).parent(); const container = tag.parent(); tag.remove(); updateHiddenInput(container); });
-        let fieldIndex = <?php echo count($form_fields); ?>; const fieldsContainer = $('#fields-container');
-        function toggleOptions(selectElement) { const $fieldBlock = $(selectElement).closest('.field-block'); const $optionsContainer = $fieldBlock.find('.options-container'); const showOptions = ['select', 'checkbox', 'radio'].includes($(selectElement).val()); $optionsContainer.toggle(showOptions); $fieldBlock.find('.field-block-header strong').text($(selectElement).find('option:selected').text()); }
-        $('#add-field-btn').on('click', function() { const template = $('#field-template')[0]; const clone = template.content.cloneNode(true); const $clone = $(clone); $clone.find('.is-required-checkbox').attr('name', `is_required[${fieldIndex}]`).removeClass('is-required-checkbox'); fieldsContainer.append($clone); fieldIndex++; });
-        fieldsContainer.on('click', '.remove-field-btn', function() { $(this).closest('.field-block').remove(); });
-        fieldsContainer.on('change', '.field-type-select', function() { toggleOptions(this); });
-        fieldsContainer.sortable({ handle: ".field-block-header", placeholder: "field-placeholder", forcePlaceholderSize: true });
+        if (eventTitle) {
+            formTitleInput.val(eventTitle); 
+            const slug = eventTitle.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+            formSlugInput.val(slug);
+        } else {
+            formTitleInput.val('');
+            formSlugInput.val('');
+        }
     });
+
+    // The rest of the jQuery logic for the builder
+    function createTag(text, container) { const tag = $('<span class="tag"></span>').text(text); const removeBtn = $('<span class="tag-remove-btn">&times;</span>'); tag.append(removeBtn); container.before(tag); }
+    function updateHiddenInput(container) { const tags = container.parent().find('.tag'); const hiddenInput = container.parent().find('.hidden-options-input'); const tagValues = $.map(tags, (tag) => $(tag).clone().children().remove().end().text().trim()); hiddenInput.val(tagValues.join(',')); }
+    $('.tag-input-container').each(function() { const container = $(this); const hiddenInput = container.find('.hidden-options-input'); const initialValues = hiddenInput.val().split(',').filter(val => val.trim() !== ''); initialValues.forEach(val => createTag(val.trim(), container.find('.tag-input'))); });
+    $(document).on('keydown', '.tag-input', function(e) { if (e.key === 'Enter') { e.preventDefault(); const input = $(this); const value = input.val().trim(); if (value) { createTag(value, input); updateHiddenInput(input.parent()); input.val(''); } } });
+    $(document).on('click', '.tag-remove-btn', function() { const tag = $(this).parent(); const container = tag.parent(); tag.remove(); updateHiddenInput(container); });
+    let fieldIndex = <?php echo count($form_fields); ?>; const fieldsContainer = $('#fields-container');
+    function toggleOptions(selectElement) { const $fieldBlock = $(selectElement).closest('.field-block'); const $optionsContainer = $fieldBlock.find('.options-container'); const showOptions = ['select', 'checkbox', 'radio'].includes($(selectElement).val()); $optionsContainer.toggle(showOptions); $fieldBlock.find('.field-block-header strong').text($(selectElement).find('option:selected').text()); }
+    $('#add-field-btn').on('click', function() { const template = $('#field-template')[0]; const clone = template.content.cloneNode(true); const $clone = $(clone); $clone.find('.is-required-checkbox').attr('name', `is_required[${fieldIndex}]`).removeClass('is-required-checkbox'); fieldsContainer.append($clone); fieldIndex++; });
+    fieldsContainer.on('click', '.remove-field-btn', function() { $(this).closest('.field-block').remove(); });
+    fieldsContainer.on('change', '.field-type-select', function() { toggleOptions(this); });
+    fieldsContainer.sortable({ handle: ".field-block-header", placeholder: "field-placeholder", forcePlaceholderSize: true });
     </script>
 </body>
 </html>

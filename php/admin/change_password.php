@@ -34,6 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit;
 }
 ?>
+
+<a href="admins_hub.php" class="action-button ajax-link" style="margin-bottom: 20px;">&larr; Back to Admin Hub</a>
+
 <div class="card form-container">
     <h1>Change Your Password</h1>
     <form id="changePasswordForm" action="change_password.php" method="post">

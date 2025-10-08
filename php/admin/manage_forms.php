@@ -2,7 +2,6 @@
 require_once 'admin_check.php';
 require_once '../db_connect.php';
 
-// FIX #1: The SQL query is updated to count ALL submissions
 $sql = "SELECT
             f.id, f.form_slug, f.title, f.status,
             (SELECT COUNT(*) FROM form_submissions fs WHERE fs.form_slug = f.form_slug) AS total_submissions
@@ -34,12 +33,16 @@ $conn->close();
             <tr>
                 <td><?php echo htmlspecialchars($form['title']); ?></td>
                 <td><?php echo htmlspecialchars($form['status']); ?></td>
-                <td>
-                    <?php echo $form['total_submissions']; ?>
-                </td>
+                <td><?php echo $form['total_submissions']; ?></td>
                 <td>
                     <a href="view_submissions.php?form_slug=<?php echo htmlspecialchars($form['form_slug']); ?>" class="table-action-btn view ajax-link">View Submissions</a>
                     <a href="create_edit_form.php?id=<?php echo $form['id']; ?>" class="table-action-btn edit">Edit</a>
+                    <a href="form_action.php?action=delete&id=<?php echo $form['id']; ?>" 
+                       class="table-action-btn deactivate ajax-link" 
+                       data-confirm="Are you sure you want to delete this form? This will also delete ALL fields and ALL submissions. This action cannot be undone."
+                       data-reload="manage_forms.php">
+                       Delete
+                    </a>
                 </td>
             </tr>
             <?php endforeach; endif; ?>

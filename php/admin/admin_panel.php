@@ -1,7 +1,5 @@
 <?php
-// Secure this page
 require_once 'admin_check.php';
-require_once '../db_connect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +9,6 @@ require_once '../db_connect.php';
     <title>MCOM Admin Panel</title>
     <link rel="stylesheet" href="css/admin_style.css">
     
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 </head>
@@ -25,10 +22,11 @@ require_once '../db_connect.php';
         <ul class="sidebar-nav">
             <li class="nav-item"><a href="dashboard_content.php" class="ajax-link">Dashboard</a></li>
             <li class="nav-item"><a href="manage_users.php" class="ajax-link">Users</a></li>
+            <li class="nav-item"><a href="manage_donors.php" class="ajax-link">Donors</a></li>
             <li class="nav-item"><a href="manage_events.php" class="ajax-link">Events</a></li>
             <li class="nav-item"><a href="campaigns.php" class="ajax-link">Donations</a></li>
             <li class="nav-item"><a href="manage_forms.php" class="ajax-link">Forms</a></li>
-            <li class="nav-item"><a href="admins_hub.php" class="ajax-link">Admins</a></li> </ul>
+            <li class="nav-item"><a href="admins_hub.php" class="ajax-link">Admins</a></li>
         </ul>
         <ul class="sidebar-nav account-nav">
             <li class="nav-item"><a href="../logout.php">Logout</a></li>
@@ -43,10 +41,7 @@ require_once '../db_connect.php';
 document.addEventListener('DOMContentLoaded', function() {
     const mainContent = document.getElementById('main-content');
     
-    // --- DIAGNOSTIC STEP ---
-    // This will tell us if the script can find the main content area.
-    console.log(mainContent);
-
+    // This is the simple, reliable function for loading basic pages
     function loadContent(url) {
         fetch(url)
             .then(response => {
@@ -54,25 +49,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 return response.text();
             })
             .then(html => {
-                if (mainContent) {
-                    mainContent.innerHTML = html;
-                } else {
-                    console.error("Critical Error: The 'main-content' element was not found in the document.");
-                }
+                mainContent.innerHTML = html;
             })
             .catch(error => { 
-                if (mainContent) {
-                    mainContent.innerHTML = '<p style="color:red;">Error: Content could not be loaded.</p>'; 
-                }
+                mainContent.innerHTML = '<p style="color:red;">Error: Content could not be loaded. Please check the file exists and has no PHP errors.</p>'; 
                 console.error('Fetch Error:', error); 
             });
     }
 
-    // Load the default dashboard page
-    loadContent('dashboard_content.php');
-    document.querySelector('.sidebar-nav .nav-item a[href="dashboard_content.php"]').parentElement.classList.add('active');
-
-    // --- The rest of the script for clicks and forms remains the same ---
+    // This part loads the initial page
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageToLoad = urlParams.get('load') || 'dashboard_content.php';
+    loadContent(pageToLoad);
+    document.querySelectorAll('.sidebar-nav .nav-item').forEach(nav => {
+        const link = nav.querySelector('a');
+        nav.classList.toggle('active', link && link.getAttribute('href') === pageToLoad);
+    });
+    
+    // This handles all link clicks
     document.querySelector('.dashboard-container').addEventListener('click', function(event) {
         const link = event.target.closest('.ajax-link');
         if (link) {
@@ -101,9 +95,36 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Form submission handler...
+    // This handles all simple form submissions
     mainContent.addEventListener('submit', function(event) {
-        // ... (this part is the same as the simple script from before)
+        const form = event.target;
+        if (form.matches('#addUserForm, #eventForm, #editUserForm, #addNoteForm, #campaignForm, #createAdminForm, #changePasswordForm, #editAdminForm')) {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const messageDiv = document.getElementById('form-message');
+
+            fetch(form.action, { method: 'POST', body: formData })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        if(messageDiv) messageDiv.innerHTML = `<p style="color: green;">${data.message}</p>`;
+                        
+                        let returnPage;
+                        if (form.matches('#addUserForm') || form.matches('#editUserForm')) returnPage = 'manage_users.php';
+                        if (form.matches('#eventForm')) returnPage = 'manage_events.php';
+                        if (form.matches('#campaignForm')) returnPage = 'campaigns.php';
+                        if (form.matches('#createAdminForm') || form.matches('#editAdminForm')) returnPage = 'manage_admins.php';
+                        if (form.matches('#changePasswordForm')) { form.reset(); return; }
+                        if (form.matches('#addNoteForm')) {
+                            const userIdInput = form.querySelector('input[name="user_id"]');
+                            if(userIdInput) returnPage = `details.php?user_id=${userIdInput.value}`;
+                        }
+                        setTimeout(() => { if(returnPage) loadContent(returnPage); }, 1500);
+                    } else {
+                        if(messageDiv) messageDiv.innerHTML = `<p style="color: red;">${data.message}</p>`;
+                    }
+                });
+        }
     });
 });
 </script>
